@@ -1,0 +1,170 @@
+<mat-nav-list>
+  <div class="profile-card">
+    <!-- <img src="assets/img/doctor/doctor.png" alt="{{ currentUserAvatar }}" class="my-3" *ngIf='doctorId==null'/> -->
+    <img [src]="placeholder_path" alt="" width="150px" height="180px" class="p-1 profile-holder my-3" />
+    <div class="header">
+      <h5>{{currentUserName}}</h5>
+      <h6>{{currentUserName}}@cms.com</h6>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+  <h2 matSubheader>Pages</h2>
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="">
+    <mat-icon>dvr</mat-icon>Dashboard
+  </a>
+
+  <span *ngIf="isAdminRole()">
+    <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent mb-1" (click)="toggleSubmenu('master_submenu')">
+      <mat-icon>menu_book</mat-icon>
+      <span class="full-width">Master</span>
+      <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}">expand_more</mat-icon>
+    </mat-list-item>
+    <!-- <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" id="master_submenu">
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/addbillconfiguration">
+        <mat-icon> attach_money</mat-icon>Bill Configuration
+      </a>
+    </div> -->
+    <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" id="master_submenu">
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/home/doctorRoleMaster">
+        <mat-icon> local_hospital</mat-icon>Specialization
+      </a>
+    </div>
+  </span>
+
+  <span *ngIf="isAdminRole()">
+    <mat-list-item (click)="showFrontDeskSubmenu = !showFrontDeskSubmenu" class="parent mb-1"
+      (click)="toggleFrontDeskSubmenu('frontDesk_submenu')">
+      <mat-icon>person</mat-icon>
+      <span class="full-width">Front Desk</span>
+      <mat-icon class="menu-button" [ngClass]="{'rotated' : showFrontDeskSubmenu}">expand_more</mat-icon>
+    </mat-list-item>
+    <!-- <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" id="master_submenu">
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/addbillconfiguration">
+        <mat-icon> attach_money</mat-icon>Bill Configuration
+      </a>
+    </div> -->
+    <div class="submenu" [ngClass]="{'expanded' : showFrontDeskSubmenu}" id="frontDesk_submenu">
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/home/frontDeskHome/listFrontDesk">
+        <mat-icon>person</mat-icon>Front Desk
+      </a>
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/home/frontDeskHome/deletedlistFrontDesk">
+        <mat-icon> delete_sweep</mat-icon> Deleted Front Desk List
+      </a>
+
+    </div>
+  </span>
+
+  <span *ngIf="isAdminRole()">
+    <mat-list-item (click)="showDoctorSubmenu = !showDoctorSubmenu" class="parent mb-1"
+      (click)="toggleDoctorSubmenu('doctor_submenu')">
+      <mat-icon><i class="fa fa-user-md" aria-hidden="true"></i></mat-icon>
+      <span class="full-width">Doctors</span>
+      <mat-icon class="menu-button" [ngClass]="{'rotated' : showDoctorSubmenu}">expand_more</mat-icon>
+    </mat-list-item>
+    <!-- <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" id="master_submenu">
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/addbillconfiguration">
+        <mat-icon> attach_money</mat-icon>Bill Configuration
+      </a>
+    </div> -->
+    <div class="submenu" [ngClass]="{'expanded' : showDoctorSubmenu}" id="doctor_submenu">
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/home/doctorshome/listdoctor">
+        <mat-icon><i class="fa fa-user-md" aria-hidden="true"></i></mat-icon>Doctors
+      </a>
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/home/doctorshome/deletedlistdoctor">
+        <mat-icon> delete_sweep</mat-icon>Deleted Doctors List
+      </a>
+    </div>
+  </span>
+
+  <span *ngIf="isAdminRole()">
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/home/usershome/listUsers">
+      <mat-icon>people</mat-icon>Users List
+    </a>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/home/patientshome/listpatient">
+      <mat-icon> local_hotel</mat-icon>Patients
+    </a>
+
+    <mat-list-item (click)="showappointmentSubmenu = !showappointmentSubmenu" class="parent mb-1" (click)="toggleappointmentSubmenu('appointment_submenu')">
+      <mat-icon>meeting_room</mat-icon>
+      <span class="full-width">Appointment</span>
+      <mat-icon class="menu-button" [ngClass]="{'rotated' : showappointmentSubmenu}">expand_more</mat-icon>
+    </mat-list-item>
+
+    <div class="submenu" [ngClass]="{'expanded' : showappointmentSubmenu}" id="appointment_submenu">
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/home/appointmenthome/listappointment">
+        <mat-icon>meeting_room</mat-icon>Appointment
+      </a>
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/home/appointmenthome/appointmentconformation">
+        <mat-icon><i class="fa fa-check-circle" aria-hidden="true"></i></mat-icon>Confirmation
+      </a>
+    </div>
+
+
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/home/printhome">
+      <mat-icon>print</mat-icon>Print
+    </a>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/home/reportshome">
+      <mat-icon>chrome_reader_mode</mat-icon>Report
+    </a>
+  </span>
+
+  <span *ngIf="!isAdminRole()">
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/home/myAppointment">
+      <mat-icon>meeting_room</mat-icon>My Appointment
+    </a>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/home/myPatients">
+      <mat-icon> local_hotel</mat-icon>My Patients
+    </a>
+  </span>
+
+  <!-- <a mat-list-item routerLinkActive="list-item-active" routerLink="/home/patientshome/patienthistoryanddiagnosis">
+    <mat-icon>change_history</mat-icon>Patient Diagnosis
+  </a> -->
+
+  <!-- <a mat-list-item routerLinkActive="list-item-active" routerLink="/home/addprescription">
+    <mat-icon>library_books</mat-icon>Prescription
+  </a> -->
+
+  <!-- <a mat-list-item routerLinkActive="list-item-active" routerLink="/home/labtest">
+    <mat-icon>colorize</mat-icon>Lab Test
+  </a> -->
+
+  <!-- <a mat-list-item routerLinkActive="list-item-active" routerLink="/home/labreports">
+    <mat-icon>assignment</mat-icon>Lab Reports
+  </a> -->
+
+  <!-- <a mat-list-item routerLinkActive="list-item-active" routerLink="/home/listpatienthistory">
+    <mat-icon>history</mat-icon>Patient History
+  </a> -->
+
+  <!-- <a mat-list-item routerLinkActive="list-item-active" routerLink="/home/referalnote">
+    <mat-icon>supervised_user_circle</mat-icon>Reference
+  </a> -->
+
+  <!-- <a mat-list-item routerLinkActive="list-item-active" routerLink="/home/invoicehome">
+    <mat-icon>library_books</mat-icon>Invoice
+  </a> -->
+
+  <!-- <a mat-list-item routerLinkActive="list-item-active" routerLink="/home/posts">
+      <mat-icon>notifications</mat-icon>Posts
+    </a> -->
+
+  <!-- <mat-divider></mat-divider> -->
+
+  <!-- <h2 matSubheader>Tools</h2>
+  
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
+      <mat-icon>import_contacts</mat-icon>
+      Contacts
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
+      <mat-icon>contact_phone</mat-icon>
+      Leads
+    </a> -->
+</mat-nav-list>

@@ -1,0 +1,282 @@
+<div class="container-fluid mt-3 p-0">
+    <div class="card shadow">
+        <div class="card-title">
+            <h4 class="text-center main-bg pt-3 mt-1">- Prescription -</h4>
+        </div>
+        <!-- <mat-divider class="mx-5"></mat-divider> -->
+
+        <div class="mt-3">
+            <div class="row d-flex justify-content-center mt-4 ml-5 mr-5 w-100 mx-auto">
+                <div class="col-lg-4 col-sm-12 col-md-6 text-center header-text">
+                    <div class="row">
+                        <div class="col">
+                            <p>
+                                Patient Number: {{patientNumber}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p>
+                                Patient Name:{{patientName}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-md-6 text-center header-text">
+                    <div class="row">
+                        <div class="col">
+                            <p>
+                                <!-- Patient Number: {{patientNumber}} -->
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p>
+                                Doctor Name: {{doctorName}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-md-6 text-center header-text">
+                    <div class="row">
+                        <div class="col">
+                            <p>
+                                Age: {{age}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p>
+                                Date:{{date}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <mat-divider class="mx-5"></mat-divider>
+
+
+        <form action="" class="form-group customhover" [formGroup]="addPrescriptionForm"
+            (ngSubmit)="savePrescriptionDetails()" action="">
+            <!-- <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+                <div class="col-lg-6 col-sm-12 col-md-6">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Name Of The Drug</mat-label>
+                        <input matInput placeholder="Ex. Dolo-650" value="" />
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-6 col-sm-12 col-md-6">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Strength</mat-label>
+                        <input matInput placeholder="Ex. 500mg" value="" />
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-around ml-5 mr-5">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <mat-form-field class="field-full-width">
+                                <mat-label>Dosage</mat-label>
+                                <input matInput placeholder="Ex. Dolo-650" value="" />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 mt-4">
+                            <mat-radio-group aria-label="Select an option" color="primary">
+                                <mat-radio-button value="1">BF</mat-radio-button>
+                                <mat-radio-button value="2">AF</mat-radio-button>
+                              </mat-radio-group>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <mat-form-field class="field-full-width">
+                                <mat-label>Dosage</mat-label>
+                                <input matInput placeholder="Ex. Dolo-650" value="" />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 mt-4">
+                            <mat-radio-group aria-label="Select an option" color="primary">
+                                <mat-radio-button value="1">BF</mat-radio-button>
+                                <mat-radio-button value="2">AF</mat-radio-button>
+                              </mat-radio-group>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <mat-form-field class="field-full-width">
+                                <mat-label>Dosage</mat-label>
+                                <input matInput placeholder="Ex. Dolo-650" value="" />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 mt-4">
+                            <mat-radio-group aria-label="Select an option" color="primary">
+                                <mat-radio-button value="1">BF</mat-radio-button>
+                                <mat-radio-button value="2">AF</mat-radio-button>
+                              </mat-radio-group>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+                <div class="col-lg-4 col-md-12 col-sm-12 mt-3">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Duration</mat-label>
+                        <input matInput placeholder="Ex. Dolo-650" value="" />
+                    </mat-form-field>                </div>
+                <div class="col-lg-8 col-md-12 col-sm-12">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Remarks</mat-label>
+                        <textarea matInput placeholder="Ex. fever, cold, chest pain etc..,"></textarea>
+                        <mat-icon matSuffix color="primary">edit</mat-icon>
+                    </mat-form-field>
+                </div>
+            </div> -->
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+                <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
+                    <!-- Dynamic Row Starts here -->
+                    <table class="table table-bordered mt-5 tablecss text-center shadow table-responsive"
+                        style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%;">Sl.no</th>
+                                <th style="width: 20%;">Drug Name</th>
+                                <th style="width: 10%;">Strength</th>
+                                <th style="width: 10%;">Morning</th>
+                                <th style="width: 10%;">Noon</th>
+                                <th style="width: 10%;">Night</th>
+                                <th style="width: 10%;">Duration <br> (No of days)</th>
+                                <th style="width: 20%;">Remarks</th>
+                                <th style="width: 5%;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let dynamic of dynamicArray; let i = index;">
+                                <td style="width: 5%;">
+                                    {{i+1}}.
+                                </td>
+                                <td style="width: 20%;">
+                                    <mat-form-field class="field-drugName">
+                                        <input matInput value="" [(ngModel)]="dynamic.drugName"
+                                            [ngModelOptions]="{standalone: true}" id="drugName{{i}}"
+                                            (input)="validatePrescriptionDetails(i);" />
+                                    </mat-form-field>
+                                    <p style="color: red;" id="drugNameMsg{{i}}"></p>
+                                </td>
+                                <td style="width: 10%;">
+                                    <mat-form-field class="field-dosage">
+                                        <input matInput value="" [(ngModel)]="dynamic.strength"
+                                            [ngModelOptions]="{standalone: true}" id="strength{{i}}"
+                                            (input)="validatePrescriptionDetails(i);" />
+                                    </mat-form-field>
+                                    <p style="color: red;" id="strengthMsg{{i}}"></p>
+                                </td>
+                                <td style="width: 10%;">
+                                    <mat-radio-group aria-label="Select an option" color="primary"
+                                        [(ngModel)]="dynamic.morningDosage" [ngModelOptions]="{standalone: true}"
+                                        id="morningDosage{{i}}.value" (input)="validatePrescriptionDetails(i);">
+                                        <mat-radio-button value="bf">BF</mat-radio-button>
+                                        <mat-radio-button value="af">AF</mat-radio-button>
+                                    </mat-radio-group>
+                                    <p style="color: red;" id="morningDosageMsg{{i}}"></p>
+                                </td>
+
+                                <td style="width: 10%;">
+                                    <mat-radio-group aria-label="Select an option" color="primary"
+                                        [(ngModel)]="dynamic.afternoonDosage" [ngModelOptions]="{standalone: true}"
+                                        id="afternoonDosage{{i}}.value" (input)="validatePrescriptionDetails(i);">
+                                        <mat-radio-button value="bf">BF</mat-radio-button>
+                                        <mat-radio-button value="af">AF</mat-radio-button>
+                                    </mat-radio-group>
+                                    <p style="color: red;" id="afternoonDosageMsg{{i}}"></p>
+                                </td>
+                                <td style="width: 10%;">
+                                    <mat-radio-group aria-label="Select an option" color="primary"
+                                        [(ngModel)]="dynamic.nightDosage" [ngModelOptions]="{standalone: true}"
+                                        id="nightDosage{{i}}.value" (input)="validatePrescriptionDetails(i);">
+                                        <mat-radio-button value="bf">BF</mat-radio-button>
+                                        <mat-radio-button value="af">AF</mat-radio-button>
+                                    </mat-radio-group>
+                                    <p style="color: red;" id="nightDosageMsg{{i}}"></p>
+                                </td>
+                                <td style="width: 10%;">
+                                    <mat-form-field class="field-dosage">
+                                        <input matInput value="" [(ngModel)]="dynamic.duration"
+                                            [ngModelOptions]="{standalone: true}" id="duration{{i}}"
+                                            (input)="validatePrescriptionDetails(i);" />
+                                    </mat-form-field>
+                                    <p style="color: red;" id="durationMsg{{i}}"></p>
+                                </td>
+
+
+                                <td style="width: 15%;">
+                                    <mat-form-field class="field-drugName">
+                                        <input matInput value="" [(ngModel)]="dynamic.remarks"
+                                            [ngModelOptions]="{standalone: true}" id="remarks{{i}}"
+                                            (input)="validatePrescriptionDetails(i);" />
+                                    </mat-form-field>
+                                    <p style="color: red;" id="remarksMsg{{i}}"></p>
+                                </td>
+
+                                <td (click)="addRow()" class="text-center" style="width: 5%;">
+                                    <!-- <i class="fa fa-plus fa-1x  text-light"></i> -->
+                                    <mat-icon class="rowAddIcon" title="Add" color="primary">add</mat-icon>
+                                </td>
+                                <!-- <span  > -->
+                                <td (click)="deleteRow(i)" class=" text-center" *ngIf='i!=0' style="width: 5%;">
+                                    <!-- <i class="fa fa-trash fa-1x  text-light"></i> -->
+                                    <mat-icon class="rowDeleteIcon" title="Delete" color="accent">delete</mat-icon>
+                                </td>
+                                <!-- </span> -->
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- Dynamic Row ends here -->
+                </div>
+            </div>
+            <!-- <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Remarks</mat-label>
+                        <textarea matInput placeholder="Ex. fever, cold, chest pain etc..,"></textarea>
+                        <mat-icon matSuffix color="primary">edit</mat-icon>
+                    </mat-form-field>
+                </div>
+            </div> -->
+
+
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5 mb-5">
+                <div class="col-lg-2 col-md-6 col-sm-12">
+
+                </div>
+                <div class="col-lg-8 col-md-6 col-sm-12 d-flex justify-content-around">
+                    <button type="submit" mat-raised-button color="primary"
+                        [disabled]='(addPrescriptionForm.invalid) || (!prescriptionDetailsFlag)'>
+                        <mat-icon class="mr-2">save</mat-icon>Save
+                    </button>
+                    <button type="button" mat-raised-button color="accent" (click)="gotoBack()">
+                        <mat-icon class="mr-2">360</mat-icon>Back
+                    </button>
+                    <!-- <button mat-raised-button color="primary" (click)='routeToLabTest()'>
+                        <mat-icon class="mr-2">save</mat-icon>Lab Test
+                    </button> -->
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-12">
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- <router-outlet></router-outlet> -->

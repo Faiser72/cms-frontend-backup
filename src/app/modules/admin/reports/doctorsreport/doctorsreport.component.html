@@ -1,0 +1,147 @@
+<div class="container-fluid mt-3 p-0">
+    <div class="card shadow">
+        <div class="card-title">
+            <h4 class="text-center main-bg pt-3 mt-1">- Doctors Report -</h4>
+        </div>
+        <mat-divider class="mx-5"></mat-divider>
+        <form action="" class="form-group customhover" [formGroup]="appointmentReportOfDoctorsForm"
+            (ngSubmit)="getAppointmentDetailsOfDoctorByDate()">
+            <h6 class="text-center main-bg pt-3 mt-1">Total Doctors Appointment On</h6>
+
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5 w-100">
+                <div class="col-lg-8 col-sm-12 col-md-6 mx-auto">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Date</mat-label>
+                        <input matInput type="date" placeholder="Ex. 7/7/1995" value="" color="primary"
+                            formControlName="date" />
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="appointmentReportOfDoctorsForm.get('date') && appointmentReportOfDoctorsForm.get('date').touched && appointmentReportOfDoctorsForm.get('date').invalid">
+                        Please enter this field</p>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-around">
+                    <button mat-raised-button color="primary" class="shadow"
+                        [disabled]="appointmentReportOfDoctorsForm.invalid">
+                        <mat-icon>open_in_new</mat-icon> Get Doctors Report
+                    </button>
+                    <!-- <button mat-raised-button color="accent">Reset</button> -->
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- <div *ngIf="isShown1"> -->
+    <div>
+        <div class="container-fluid mt-3 p-0" id="componentID1">
+            <div class="card shadow">
+                <div class="card-title">
+                    <h4 class="text-center main-bg pt-3 mt-1">- Appointments -</h4>
+                </div>
+                <!-- <mat-divider class="mx-5"></mat-divider> -->
+
+                <mat-divider class="mx-5"></mat-divider>
+
+                <div class="mat-elevation-z8 mt-5">
+                    <table mat-table [dataSource]="dataSource1" matSort style="width: 100%;">
+                        <!-- ID Column -->
+                        <ng-container matColumnDef="slNo">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_header"
+                                style="width: 5%;">Sl.no</th>
+                            <td mat-cell *matCellDef="let row">{{dataSource1.filteredData.indexOf(row) + 1}}.</td>
+                        </ng-container>
+
+                        <!-- drugName Column -->
+                        <ng-container matColumnDef="doctorName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_header"
+                                style="width: 25%;">
+                                Doctor Name
+                            </th>
+                            <td mat-cell *matCellDef="let row">{{ row.doctorName.doctorName }}</td>
+                        </ng-container>
+
+                        <!-- strength Column -->
+                        <!-- <ng-container matColumnDef="doctorName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_header"
+                                style="width: 10%;">
+                                Doctor Name
+                            </th>
+                            <td mat-cell *matCellDef="let row">{{ row.doctorName.doctorName }}</td>
+                        </ng-container> -->
+
+                        <!-- duration Column -->
+                        <ng-container matColumnDef="appointmentDate">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_header"
+                                style="width: 10%;">
+                                Appointment Date
+                            </th>
+                            <td mat-cell *matCellDef="let row">{{ row.appointmentDate }}</td>
+                        </ng-container>
+
+                        <!-- duration Column -->
+                        <ng-container matColumnDef="appointmentTime">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_header"
+                                style="width: 10%;">
+                                Appointment Time
+                            </th>
+                            <td mat-cell *matCellDef="let row">{{ row.appointmentTime }}</td>
+                        </ng-container>
+
+                        <!-- Action Column -->
+                        <!-- <ng-container matColumnDef="action">
+                            <th mat-header-cell *matHeaderCellDef class="table_header" style="width: 10%;">Action</th>
+                            <td mat-cell *matCellDef="let row; let x=index;">
+                                <div class="action-btn">
+                                    <a (click)="routeToEditPrescription(this.row)" class="action-link">
+                                        <mat-icon class="edit-btn" title="Edit">edit</mat-icon>
+                                    </a>
+                                </div>
+                                <span style="color: #3f51b5;">|</span>
+                                <div class="action-btn">
+                                    <a (click)="routeToDeletePrescription(this.row)" class="action-link">
+                                        <mat-icon class="delete-btn" title="Delete">delete_forever</mat-icon>
+                                    </a>
+                                </div>
+                            </td>
+                        </ng-container> -->
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+                        <tr class="row-style" mat-row *matRowDef="let row; columns: displayedColumns1"></tr>
+                    </table>
+
+                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                </div>
+
+                <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-around">
+                        <!-- <button type="submit" mat-raised-button color="primary">
+                        <mat-icon class="mr-2">save</mat-icon>Save
+                    </button> -->
+                        <button mat-raised-button color="accent" (click)="printAppointmentDoctors('componentID1')">
+                            <mat-icon>print</mat-icon>Print
+                        </button>
+                        <button type="button" mat-raised-button color="accent" (click)="backToReportHome()">
+                            <mat-icon>arrow_back_ios</mat-icon>Back
+                        </button>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+
+                    </div>
+                </div>
+                <br />
+
+            </div>
+        </div>
+    </div>
+</div>

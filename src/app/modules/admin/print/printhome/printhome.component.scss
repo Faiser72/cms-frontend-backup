@@ -1,0 +1,33 @@
+.card-size {
+    width: 18rem;
+  }
+  
+  .card {
+    text-align: center;
+    background-color: inherit;
+    color: var(--main-font-3-color);
+
+  }
+  
+  .card-img {
+    padding: 10px;
+  }
+  
+  .img-size {
+    width: 2rem;
+    /* margin: auto; */
+  }
+  
+  .main-bg {
+    color: var(--main-font-3-color);
+  }
+  
+  .onhover:hover {
+    cursor: pointer;
+    color: var(--main-font-4-color);
+  }
+  
+  mat-divider {
+    margin-top: 20px;
+  }
+  

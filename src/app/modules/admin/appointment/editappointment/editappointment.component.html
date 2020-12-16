@@ -1,0 +1,139 @@
+<div class="container-fluid mt-3 p-0">
+    <div class="card shadow">
+        <div class="card-title">
+            <h4 class="text-center main-bg pt-3 mt-1">- Edit Appointment -</h4>
+        </div>
+        <mat-divider class="mx-5"></mat-divider>
+        <form action="" class="form-group customhover" [formGroup]="editAppointmentForm"
+            (ngSubmit)="updateAppointmentDetailsFormSubmit()">
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5 w-50 mx-auto">
+                <div class="col-lg-6 col-sm-12 col-md-6">
+                    <!-- <mat-form-field class="field-full-width">
+                        <mat-label>Patient Number <sup class="text-danger">*</sup></mat-label>
+                        <input matInput placeholder="Ex. xyz" value="" formControlName="patientNumber" />
+                    </mat-form-field> -->
+                    <!-- <mat-form-field class="field-full-width">
+                        <mat-label>Patient Number <sup class="text-danger">*</sup></mat-label>
+                        <mat-select formControlName="patientNumber" (selectionChange)="patientDetailsById($event)">
+                            <mat-option *ngFor="let patient of patientDetailsList" [value]="patient">
+                                {{patient.patientNumber}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field> -->
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Patient Number <sup class="text-danger">*</sup></mat-label>
+                        <input type="text" matInput formControlName="patientNumber" [matAutocomplete]="auto">
+                        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn"
+                            (optionSelected)="patientDetailsById($event.option)">
+                            <mat-option *ngFor="let patient of filteredPatientOptions | async" [value]="patient">
+                                {{patient.patientNumber}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="editAppointmentForm.get('patientNumber') && editAppointmentForm.get('patientNumber').touched && editAppointmentForm.get('patientNumber').invalid">
+                        {{patientNumberInputMsg}}</p>
+                </div>
+                <div class="col-lg-6 col-sm-12 col-md-6">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Patient Name <sup class="text-danger">*</sup></mat-label>
+                        <input matInput placeholder="Ex. xyz" value="" formControlName="patientName" readonly="true" />
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="editAppointmentForm.get('patientName') && editAppointmentForm.get('patientName').touched && editAppointmentForm.get('patientName').invalid">
+                        Please enter this field</p>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5 w-50 mx-auto">
+
+                <div class="col-lg-6 col-md-12 col-sm-12 mx-auto">
+                    <!-- <mat-form-field class="field-full-width">
+                        <mat-label>Doctor Name <sup class="text-danger">*</sup></mat-label>
+                        <input matInput placeholder="Ex. xyz" value="" formControlName="doctorName" />
+                    </mat-form-field> -->
+                    <!-- <mat-form-field class="field-full-width">
+                        <mat-label>Doctor Name <sup class="text-danger">*</sup></mat-label>
+                        <mat-select formControlName="doctorName">
+                            <mat-option *ngFor="let doctor of doctorDetailsList" [value]="doctor">
+                                {{doctor.doctorName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field> -->
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Doctor Name <sup class="text-danger">*</sup></mat-label>
+                        <input type="text" matInput formControlName="doctorName" [matAutocomplete]="autos">
+                        <mat-autocomplete #autos="matAutocomplete" [displayWith]="displayDoctorFn">
+                            <mat-option *ngFor="let doctor of filteredDoctorOptions | async" [value]="doctor">
+                                {{doctor.doctorName}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="editAppointmentForm.get('doctorName') && editAppointmentForm.get('doctorName').touched && editAppointmentForm.get('doctorName').invalid">
+                        {{doctorNameInputMsg}}</p>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 mx-auto">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Telephone <sup class="text-danger">*</sup></mat-label>
+                        <span matPrefix>+91 &nbsp;</span>
+                        <input type="tel" matInput placeholder="555-555-1234" formControlName="phoneNumber"
+                            readonly="true">
+                        <mat-icon matSuffix color="primary">phone</mat-icon>
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="editAppointmentForm.get('phoneNumber') && editAppointmentForm.get('phoneNumber').touched && editAppointmentForm.get('phoneNumber').invalid">
+                        Please enter valid phone number</p>
+                </div>
+
+            </div>
+
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5 w-50 mx-auto">
+                <div class="col-lg-6 col-sm-12 col-md-6 mt-2">
+                    <!-- <mat-form-field class="field-full-width">
+                        <mat-label>Appointment Date <sup class="text-danger">*</sup></mat-label>
+                        <input matInput [matDatepicker]="appointdate" placeholder="Ex. 7/2/1995" value=""
+                            formControlName="appointmentDate" />
+                        <mat-datepicker-toggle matSuffix [for]="appointdate"></mat-datepicker-toggle>
+                        <mat-datepicker #appointdate></mat-datepicker>
+                    </mat-form-field> -->
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Appointment Date</mat-label>
+                        <input matInput type="date" placeholder="Ex. 7/2/1995" value="" color="primary"
+                            formControlName="appointmentDate" min="{{today}}" />
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="editAppointmentForm.get('appointmentDate') && editAppointmentForm.get('appointmentDate').touched && editAppointmentForm.get('appointmentDate').invalid">
+                        Please enter this field</p>
+                </div>
+                <div class="col-lg-6 col-sm-12 col-md-6">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Appointment Time <sup class="text-danger">*</sup></mat-label>
+                        <input matInput type="time" placeholder="Ex. xyz" value="" class="time"
+                            formControlName="appointmentTime" />
+                        <mat-icon matSuffix color="primary">access_time</mat-icon>
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="editAppointmentForm.get('appointmentTime') && editAppointmentForm.get('appointmentTime').touched && editAppointmentForm.get('appointmentTime').invalid">
+                        Please enter this field</p>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-around">
+                    <button type="submit" mat-raised-button color="primary" [disabled]='editAppointmentForm.invalid'>
+                        <mat-icon class="mr-2">save</mat-icon>Submit
+                    </button>
+                    <button type="button" mat-raised-button color="accent" (click)='gotoBack()'>
+                        <mat-icon class="mr-2">360</mat-icon>Back
+                    </button>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

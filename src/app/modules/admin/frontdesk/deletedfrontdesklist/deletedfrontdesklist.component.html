@@ -1,0 +1,80 @@
+<br />
+<h4 class="title-header">- Deleted Front Desk List -</h4>
+<!-- <div class="text-right">
+  <button (click)="routeToAddFrontDesk()" class="addButton btn">Add FrontDesk</button>
+</div> -->
+<div class="text-center">
+  <mat-form-field>
+    <!-- <mat-label>Search Candidate</mat-label> -->
+    <input matInput (keyup)="applyFilter($event)" placeholder="Search here..." />
+  </mat-form-field>
+</div>
+<!-- "frontDeskName",
+"gender",
+"mobileNo",
+"emailId", -->
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <!-- ID Column -->
+    <ng-container matColumnDef="slNo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_header">Sl.no</th>
+      <td mat-cell *matCellDef="let row">{{dataSource.filteredData.indexOf(row) + 1}}.</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="frontDeskName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_header">
+        Front Desk Name
+      </th>
+      <td mat-cell *matCellDef="let row">{{ row.frontDeskName }}</td>
+    </ng-container>
+
+    <!-- Specialization Column -->
+    <ng-container matColumnDef="gender">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_header">
+        Gender
+      </th>
+      <td mat-cell *matCellDef="let row">{{ row.gender }}</td>
+    </ng-container>
+
+    <!-- visitingTime Column -->
+    <ng-container matColumnDef="mobileNo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_header">
+        Mobile No
+      </th>
+      <td mat-cell *matCellDef="let row">{{ row.mobileNo }}</td>
+    </ng-container>
+
+    <!-- contactNumber Column -->
+    <ng-container matColumnDef="emailId">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_header">
+        Email Id
+      </th>
+      <td mat-cell *matCellDef="let row">{{ row.emailId }}</td>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef class="table_header">Action</th>
+      <td mat-cell *matCellDef="let row">
+        <!-- <div class="action-btn">
+          <a (click)="routeToEditFrontDesk(this.row)" class="action-link">
+            <mat-icon class="edit-btn" title="Edit">edit</mat-icon>
+          </a>
+        </div> -->
+        <!-- <span style="color: #3f51b5;">|</span> -->
+        <div class="action-btn">
+          <a (click)="routeToUndoFrontDesk(this.row.frontdeskId, this.row)" class="action-link">
+            <mat-icon class="delete-btn" title="Undo">undo</mat-icon>
+          </a>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr class="row-style" mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+<br />

@@ -1,0 +1,313 @@
+<div class="container-fluid mt-3 p-0">
+    <!-- <div class="card shadow">
+        <div class="card-title">
+            <h4 class="text-center main-bg pt-3 mt-1">- Patient History -</h4>
+        </div>
+        <mat-divider class="mx-5"></mat-divider>
+        <form action="" class="form-group customhover" [formGroup]="patientHistoryForm"
+        (ngSubmit)="addAppointmentFormSubmit()" >
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+                <div class="col-lg-4 col-sm-12 col-md-6">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Patient Number</mat-label>
+                        <input matInput placeholder="Ex. xyz" value="" />
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-md-6">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Patient Name</mat-label>
+                        <input matInput placeholder="Ex. xyz" value="" />
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-md-6">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Telephone</mat-label>
+                        <span matPrefix>+91 &nbsp;</span>
+                        <input type="tel" matInput placeholder="555-555-1234">
+                        <mat-icon matSuffix color="primary">phone</mat-icon>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-around">
+                    <button mat-raised-button color="primary" class="shadow" (click)="toggleShow()">
+                        <mat-icon>open_in_new</mat-icon> Get Records
+                    </button>-->
+    <!-- <button mat-raised-button color="accent">Reset</button> -->
+    <!-- </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+
+                </div>
+            </div>
+        </form>
+    </div> -->
+
+
+    <div>
+        <div class="container-fluid mt-3 p-0" id="componentID">
+            <div class="card shadow">
+                <div class="card-title">
+                    <h4 class="text-center main-bg pt-3 mt-1">- Patient History -</h4>
+                </div>
+                <!-- <mat-divider class="mx-5"></mat-divider> -->
+
+                <div class="mt-3">
+                    <div class="row d-flex justify-content-center mt-4 ml-5 mr-5 w-100 mx-auto">
+                        <div class="col-lg-4 col-sm-12 col-md-6 text-center header-text">
+                            <div class="row">
+                                <div class="col">
+                                    <p>
+                                        Patient Number: {{patientNumber}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p>
+                                        Patient Name: {{patientName}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-12 col-md-6 text-center header-text">
+                            <div class="row">
+                                <div class="col">
+                                    <p>
+                                        <!-- Patient Number: {{patientNumber}} -->
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p>
+                                        Doctor Name: {{doctorName}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-12 col-md-6 text-center header-text">
+
+                            <div class="row">
+                                <div class="col">
+                                    <p>
+                                        Age: {{age}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p>
+                                        Date: {{date}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <mat-divider class="mx-5"></mat-divider>
+
+                <form action="" class="form-group customhover">
+
+
+                    <!-- diagnosis table starts -->
+
+                    <div class="card-title">
+                        <h4 class="text-center main-bg pt-3 mt-1">- Patient Diagnosis -</h4>
+                    </div>
+                    <div class="mat-elevation-z8 mt-5 w-50 mx-auto">
+                        <table mat-table [dataSource]="dataSourceDiagnosis" matSort>
+                            <!-- ID Column -->
+                            <ng-container matColumnDef="slNo">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_header"
+                                    style="width: 10%">
+                                    Sl.no</th>
+                                <td mat-cell *matCellDef="let row">
+                                    {{dataSourceDiagnosis.filteredData.indexOf(row) + 1}}.</td>
+                            </ng-container>
+
+                            <!-- drugName Column -->
+                            <ng-container matColumnDef="date">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_header"
+                                    style="width: 40%">
+                                    Date
+                                </th>
+                                <td mat-cell *matCellDef="let row">{{ row.date }}</td>
+                            </ng-container>
+
+                            <!-- strength Column -->
+                            <ng-container matColumnDef="diagnosis">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_header"
+                                    style="width: 10%">
+                                    Diagnosis
+                                </th>
+                                <td mat-cell *matCellDef="let row">{{ row.diagnosis }}</td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumnsDiagnosis"></tr>
+                            <tr class="row-style" mat-row *matRowDef="let row; columns: displayedColumnsDiagnosis"></tr>
+
+                        </table>
+                        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                    </div>
+                    <br />
+
+                    <!-- table ends -->
+
+
+
+
+                    <!-- prescription table starts -->
+
+                    <div class="card-title">
+                        <h4 class="text-center main-bg pt-3 mt-1">- Prescription -</h4>
+                    </div>
+                    <div class="mat-elevation-z8 mt-5">
+                        <table mat-table [dataSource]="dataSource" matSort>
+                            <!-- ID Column -->
+                            <ng-container matColumnDef="slNo">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_header"
+                                    style="width: 10%">
+                                    Sl.no</th>
+                                <td mat-cell *matCellDef="let row">{{dataSource.filteredData.indexOf(row) + 1}}.</td>
+                            </ng-container>
+
+                            <!-- drugName Column -->
+                            <ng-container matColumnDef="drugName">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_header"
+                                    style="width: 40%">
+                                    Drug Name
+                                </th>
+                                <td mat-cell *matCellDef="let row">{{ row.drugName }}</td>
+                            </ng-container>
+
+                            <!-- strength Column -->
+                            <ng-container matColumnDef="strength">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_header"
+                                    style="width: 10%">
+                                    Strength
+                                </th>
+                                <!-- row.contactPersonNo.slice(0,row.contactPersonNo.indexOf(",")) -->
+                                <td mat-cell *matCellDef="let row">{{ row.strength }}</td>
+                            </ng-container>
+
+                            <!-- remarks Column -->
+                            <ng-container matColumnDef="remarks">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_header"
+                                    style="width: 30%">
+                                    Remarks
+                                </th>
+                                <td mat-cell *matCellDef="let row">{{ row.remarks }}</td>
+                            </ng-container>
+
+                            <!-- duration Column -->
+                            <ng-container matColumnDef="duration">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_header"
+                                    style="width: 10%">
+                                    Duration
+                                </th>
+                                <td mat-cell *matCellDef="let row">{{ row.duration }}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="date">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_header"
+                                    style="width: 10%">
+                                    Date
+                                </th>
+                                <td mat-cell *matCellDef="let row">{{ row.date }}</td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr class="row-style" mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+                        </table>
+                        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                    </div>
+                    <br />
+
+                    <!-- table ends -->
+
+                    <h5 class="text-center main-bg-2"> Test Reports</h5>
+                    <!-- <div class="row d-flex justify-content-around mt-4 ml-5 mr-5 w-25">
+                        <div class="col-2 text-center">1 . </div>
+                        <div class="col-lg-6 col-sm-12 col-md-6"> -->
+                    <!-- <button type="reset" mat-raised-button color="primary" class="float-left">
+                                <mat-icon class="mr-2">cloud_download</mat-icon>Download
+                            </button>
+                            <p>nofiles</p> -->
+                    <!-- 
+                            <p class="label-header">Test Reports</p>
+                            <button type="button" mat-stroked-button (click)="downloadTestReport()"
+                                class="download-btn" color='primary'>Download</button>
+                        </div>
+                    </div> -->
+
+                    <table id="paginationSimpleNumbers" class="display text-center" style="width:100%">
+                        <thead class="main-bg">
+                            <tr>
+                                <th class="th-sm">Sl No.
+                                </th>
+                                <th class="th-sm">Test Name
+                                </th>
+                                <th class="th-sm">File
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let testReports of testReportsList ; let i = index;">
+                                <td>{{i+1}}</td>
+                                <td>{{testReports.testName}}</td>
+                                <td>
+                                    <!-- <img src="{{baseUrl}}/{{verification.verificationFile}}" alt="" style="max-width: 5rem;"> -->
+                                    <button type="button" mat-stroked-button class="download-btn" color='primary'><a
+                                            href="{{baseUrl}}/downloadreports/{{testReports.testReportFileName}}"
+                                            class="" style="text-decoration: none;">Download</a></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="orange">
+                            <!-- <tr>
+                                <th class="th-sm">Sl No
+                                </th>
+                                <th class="th-sm">KnokTalk ID
+                                <th class="th-sm">First Name
+                                </th>
+                                <th class="th-sm">Last Name
+                                </th>
+                                <th class="th-sm">Attachment
+                                </th>
+                                <th class="th-sm">Created Date
+                                </th>
+                                <th class="th-sm">Action
+                                </th>
+                            </tr> -->
+                        </tfoot>
+                    </table>
+
+
+                    <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-around">
+                            <!-- <button type="submit" mat-raised-button color="primary">
+                                <mat-icon class="mr-2">save</mat-icon>Submit
+                            </button> -->
+                            <button type="button" mat-raised-button color="accent" (click)="back()">
+                                <mat-icon class="mr-2">360</mat-icon>Back
+                            </button>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+
+                        </div>
+                    </div>
+                </form>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,299 @@
+.container-fluid {
+    animation: fadeInAnimation ease 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
+  @keyframes fadeInAnimation {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes slideIn {
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  .parallax {
+    background-image: url("/../assets/img/blockchain.gif");
+    min-height: 500px;
+  
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  .txt {
+    font-weight: bold;
+  }
+  
+  .button {
+    background-color: #1c87c9;
+    -webkit-border-radius: 60px;
+    border-radius: 60px;
+    border: none;
+    //   color: #eeeeee;
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+    font-family: sans-serif;
+    font-size: 20px;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+  }
+  @keyframes glowing {
+    0% {
+      background-color: #2ba805;
+      box-shadow: 0 0 5px #2ba805;
+    }
+    50% {
+      background-color: #49e819;
+      box-shadow: 0 0 20px #49e819;
+    }
+    100% {
+      background-color: #2ba805;
+      box-shadow: 0 0 5px #2ba805;
+    }
+  }
+  .button {
+    animation: glowing 1300ms infinite;
+  }
+  
+  button {
+    outline: none;
+  }
+  
+  .one{
+    color:rgba(250,175,63,1) ;
+  }
+  
+  .two{
+    color: #137779;
+  }
+  
+  .one_o{
+    color:rgba(254,201,94,1) ;
+  }
+  
+  .two_t{
+    color: #32AEB1;
+  }
+  
+  @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+  @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+  
+  :root {
+    /* Brand Logo Color */
+    --main-brand-color: #bd9a36;
+    /* Background Colors */
+    --main-bg-1-color: #3f51b5;
+    --main-bg-2-color: #ee436e;
+    --main-bg-3-color: #0b2239;
+    /* Fonts Families*/
+    --main-font-1-family: "Montserrat", sans-serif;
+    /* Fonts Colors*/
+    --main-font-1-color: #ffffff;
+    --main-font-2-color: #000000;
+    --main-font-3-color: #3f51b5;
+    --main-font-4-color: #ee436e;
+    /* Tiles */
+    --main-tile-1-color: #382f9c;
+    --main-tile-2-color: #f4f4f4;
+  }
+  
+  .dashboard {
+    margin: 0px;
+  }
+  
+  .tiles {
+    min-width: 200px;
+    /* min-height: 235px; */
+    box-sizing: border-box;
+    border: 1px solid white;
+    border-radius: 6px;
+    -webkit-box-shadow: 2px 7px 19px -6px rgba(0, 0, 0, 0.24);
+    -moz-box-shadow: 2px 7px 19px -6px rgba(0, 0, 0, 0.24);
+    box-shadow: 2px 7px 19px -6px rgba(0, 0, 0, 0.24);
+    cursor: pointer;
+    background-color: inherit;
+  }
+  
+  .calendarBody {
+    vertical-align: middle;
+  }
+  
+  .date-input {
+    max-width: 120px;
+    border-top: 0px;
+    border-right: 0px;
+    border-left: 0px;
+    text-align: center;
+  }
+  
+  .date-input:focus {
+    outline: 0;
+  }
+  
+  .tiles .card-title {
+    color: var(--main-font-3-color);
+  }
+  
+  .title {
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    border: 0;
+    color: var(--main-font-3-color);
+    outline: 0;
+  }
+  
+  .count {
+    text-align: center;
+    // font-size: 5px;
+    color: var(--main-bg-2-color);
+  }
+
+  .count mat-icon {
+    height: 44px;
+    width: 44px;
+  }
+  
+  .card-text {
+    color: gray;
+    font-size: 14px;
+  }
+  
+  .upcomingEvents {
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid white;
+    border-radius: 6px;
+    padding: 10px;
+    -webkit-box-shadow: 2px 7px 19px -6px rgba(0, 0, 0, 0.24);
+    -moz-box-shadow: 2px 7px 19px -6px rgba(0, 0, 0, 0.24);
+    box-shadow: 2px 7px 19px -6px rgba(0, 0, 0, 0.24);
+  }
+  
+  .upcomingEvents .title,
+  .recentActivities .title {
+    margin: 10px;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    border: 0;
+    color: var(--main-font-3-color);
+    outline: 0;
+  }
+  
+  .recentActivities {
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid white;
+    border-radius: 6px;
+    padding: 10px;
+    -webkit-box-shadow: 2px 7px 19px -6px rgba(0, 0, 0, 0.24);
+    -moz-box-shadow: 2px 7px 19px -6px rgba(0, 0, 0, 0.24);
+    box-shadow: 2px 7px 19px -6px rgba(0, 0, 0, 0.24);
+  }
+  
+  
+  .upcoming{
+    height: 5rem;
+    margin-top: 5px;
+  }
+  
+  .left-bar{
+    height: 5rem;
+    width: 5rem;
+    background-color: rgb(255, 255, 255);
+    color: var(--main-bg-1-color);
+    font-weight: bold;
+    font-size: medium;
+    float: left;
+    -webkit-box-shadow: 2px 7px 19px -6px rgba(0, 0, 0, 0.24);
+    -moz-box-shadow: 2px 7px 19px -6px rgba(0, 0, 0, 0.24);
+    box-shadow: 2px 7px 19px -6px rgba(0, 0, 0, 0.24);
+  }
+  
+  mat-card{
+    -webkit-box-shadow: 2px 7px 19px -6px rgba(0, 0, 0, 0.24);
+    -moz-box-shadow: 2px 7px 19px -6px rgba(0, 0, 0, 0.24);
+    box-shadow: 2px 7px 19px -6px rgba(0, 0, 0, 0.24);
+    cursor: pointer;
+  }
+  
+  
+  .marqu{
+    display: inline;
+  }
+  
+  .marquee {
+    margin: 0 auto;
+    height: 5rem;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    box-sizing: border-box;
+    position: relative;
+    }
+  
+    .marquee:before, .marquee:after {
+    position: absolute;
+    top: 0;
+    width: 80px;
+    height: 5rem;
+    content: "";
+    z-index: 1;
+    }
+  
+    .marquee:before {
+    left: 0;
+    background: linear-gradient(to right, #ee436e 50%, transparent 110%);
+    }
+  
+    /* .marquee:after {
+    right: 0;
+    background: linear-gradient(to left, #3f51b5 10%, transparent 80%);
+    } */
+  
+    .marquee__content {
+    width: 300%;
+    display: flex;
+    line-height: 5rem;
+    animation: marquee 10s linear infinite forwards;
+    }
+  
+    .marquee__content:hover {
+    animation-play-state: paused;
+    }
+  
+    .list-inline {
+    display: flex;
+    justify-content: space-around;
+    width: 33.33%;
+    /* reset list */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    }
+  
+    @keyframes marquee {
+    0% {
+    transform: translateX(0);
+    }
+    100% {
+    transform: translateX(-66.6%);
+    }
+    }
+  
+  
+  
+  

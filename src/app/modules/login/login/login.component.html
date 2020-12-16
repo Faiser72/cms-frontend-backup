@@ -1,0 +1,57 @@
+<div class="container-fluid">
+
+  <div class="float-right side-card card text-center text-light p-3">
+    <h1 class="mt-5">Cms</h1>
+    <mat-icon class="text-light mx-auto mi" matTooltip={{companyEmail}}>email </mat-icon>
+    <h3 class="txt mx-auto mr-3">{{companyEmail}}</h3>
+    <mat-icon class="text-light mx-auto mi" matTooltip={{companyNumber}}>contacts</mat-icon>
+    <h3 class="txt mx-auto">{{companyNumber}}</h3>
+    <mat-icon class="text-light mx-auto mi" matTooltip={{companyAddress}}>location_on</mat-icon>
+    <h3 class="txt mx-auto">{{companyAddress}}</h3>
+  </div>
+
+  <div class="container">
+    <h1 class="dialog-title text-center mt-3">Cms</h1>
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h4 class="card-title text-center">Sign In</h4>
+            <h6 style="color : red" class="text-center" *ngIf='error'>{{error}}</h6>
+            <!-- <mat-divider></mat-divider> -->
+            <form class="form-signin mt-3" name='loginForm' (submit)="doLogin()">
+              <mat-form-field class="login-full-width">
+                <mat-label>User Name</mat-label>
+                <input matInput placeholder="Enter Your Name " value="" name="username" id="username"
+                  [(ngModel)]="username" (input)="validateUsername();">
+                <mat-icon matSuffix>person</mat-icon>
+              </mat-form-field>
+              <p style="color : red" *ngIf='usernameError'>{{usernameError}}</p>
+
+              <mat-form-field class="login-full-width">
+                <mat-label>Enter your password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" name="password" id="password" [(ngModel)]="password"
+                  (input)="validatePassword();">
+                <button class="hide-btn" type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                  [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+              </mat-form-field>
+              <p style="color : red" *ngIf='passwordError'>{{passwordError}}</p>
+              <br />
+
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+              <h6 mat-raised-button (click)="openDialog()" class="text-center fgpwd">Forgot Your Password?</h6>
+
+              <!-- <div class="custom-control custom-checkbox mb-3">
+              <a mat-raised-button (click)="openDialog()">Forgot Your Password?</a>
+            </div> -->
+              <hr class="my-4">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

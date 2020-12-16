@@ -1,0 +1,105 @@
+<div class="container-fluid">
+  <div class="container mt-5 mb-5">
+    <h1 class=" text-center txt onLoad-text">Your Appointments</h1>
+    <!-- <h1 class="one">sample text 1</h1>
+          <h1 class="one_o">sample text 1.1</h1>
+          <h1 class="two">sample text 2</h1>
+          <h1 class="two_t">sample text 2.1</h1>
+          <h1 color="primary">hiiii</h1> -->
+  </div>
+
+  <div class="dashboard">
+
+    <!-- Counts Tiles Starts -->
+    <div class="row d-flex justify-content-around">
+      <div class="col-lg-2 col-md-4 col-sm-5 col-xs-4 mb-3 mr-2">
+        <div class="card tiles" (click)='routeToPatientDiagnosis()'>
+          <div class="card-body">
+            <h6 class="card-title title">Patient Diagnosis</h6>
+            <p class="count " id="value">
+              <mat-icon>change_history</mat-icon>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-sm-5 col-xs-4 mb-3 mr-2">
+        <div class="card tiles" (click)='routeToPrescription()'>
+          <div class="card-body">
+            <h6 class="card-title title">Prescription</h6>
+            <p class="count " id="value">
+              <mat-icon>library_books</mat-icon>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-sm-5 mb-3 mr-2">
+        <div class="card tiles" (click)='routeToLabTest()'>
+          <div class="card-body">
+            <h6 class="card-title title">Lab Test</h6>
+            <p class="count " id="value">
+              <mat-icon>colorize</mat-icon>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-sm-5 mb-3 mr-2">
+        <div class="card tiles" (click)='routeToPatientHistory()'>
+          <div class="card-body">
+            <h6 class="card-title title">Patient History</h6>
+            <p class="count " id="value">
+              <mat-icon>history</mat-icon>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row d-flex justify-content-around">
+      <div class="col-lg-2 col-md-4 col-sm-5 col-xs-4 mb-3 mr-2">
+        <div class=" ">
+          <div class="card-body">
+            <!-- <a href="http://clipart-library.com/clipart/8czrGek7i.htm" class="onLoad-text"><img src="http://clipart-library.com/images/8czrGek7i.gif" width="192" height="170" /></a> -->
+            <img src="assets/img/doctor/docs.gif" width="192" height="170" />
+
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-sm-5 col-xs-4 mb-3 mr-2">
+        <div class="card tiles" (click)="routeToMyReference()">
+          <div class="card-body">
+            <h6 class="card-title title">Reference</h6>
+            <p class="count " id="value">
+              <mat-icon>supervised_user_circle</mat-icon>
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-lg-2 col-md-4 col-sm-5 mb-3 mr-2">
+          <div class="card tiles" (click)="routeToMyAppointment()">
+            <div class="card-body">
+              <h6 class="card-title title"> My Appointments</h6>
+              <p class="count " id="value"> -->
+      <!-- <ng2-odometer [number]="interviewsCount" [config]="{ }"></ng2-odometer> -->
+      <!-- </p> -->
+      <!-- <p class="card-text">Active: {{ activeInterviewsCount }}</p> -->
+      <!-- </div>
+          </div>
+        </div> -->
+      <div class="col-lg-2 col-md-4 col-sm-5 mb-3 mr-2">
+        <div class=" ">
+          <div class="card-body">
+            <!-- <a href="http://clipart-library.com/clipart/qTBX8yeMc.htm" class="onLoad-text"><img src="http://clipart-library.com/images/qTBX8yeMc.gif" width="192" height="170" /></a>              </div> -->
+            <img src="assets/img/doctor/docs1.gif" width="192" height="170" />
+          </div>
+        </div>
+      </div>
+      <!-- <a href="http://clipart-library.com/clipart/8czrGek7i.htm"><img src="http://clipart-library.com/images/8czrGek7i.gif" width="192" height="170" /></a>
+  
+      <a href="http://clipart-library.com/clipart/pT5rG548c.htm"><img src="http://clipart-library.com/images/pT5rG548c.gif" width="192" height="170" /></a> -->
+      <!-- Counts Tiles Ends -->
+    </div>
+
+
+
+
+    <router-outlet></router-outlet>

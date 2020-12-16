@@ -1,0 +1,51 @@
+<div class="container-fluid my-auto pb-5">
+  <div class="row d-flex justify-content-around mt-5 ml-5 mr-5">
+    <div class="col-lg-6 col-sm-12 col-md-6">
+      <div class="card shadow onhover" (click)="routeToPrintReferal()">
+        <div class="card-img">
+          <mat-icon>print</mat-icon>
+          <h5 class="text-center text-capitalize">Print Referal Note</h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-sm-12 col-md-6">
+      <div class="card shadow onhover" (click)="routeToPrintPrescription()">
+        <div class="card-img">
+          <mat-icon> list_alt</mat-icon>
+          <h5 class="text-center text-capitalize">Print Prescription</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row d-flex justify-content-around mt-5 ml-5 mr-5">
+    <div class="col-lg-6 col-sm-12 col-md-6">
+      <div class="card shadow onhover" (click)="routeToPrintReceipt()">
+        <div class="card-img">
+          <mat-icon>print</mat-icon>
+          <h5 class="text-center text-capitalize">Print Receipt</h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-sm-12 col-md-6">
+      <div class="card shadow onhover" (click)="routeToPrintLabTest()">
+        <div class="card-img">
+          <mat-icon>assignment</mat-icon>
+          <h5 class="text-center text-capitalize">Print Lab Test</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <mat-divider></mat-divider> -->
+
+<div class="row d-flex justify-content-around mt-5 ml-5 mr-5">
+  <div class="col text-center">
+    <img src="assets/img/doctor/print.gif" width="192" height="170" />
+  </div>
+</div>
+<router-outlet></router-outlet>

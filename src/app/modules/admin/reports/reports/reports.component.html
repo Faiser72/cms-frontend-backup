@@ -1,0 +1,57 @@
+<!-- <div class="container-fluid">
+    <div class="container mt-5 mb-5">
+        <h1 class=" text-center txt onLoad-text">Reports coming soon</h1>
+    </div>
+</div> -->
+
+<div class="container-fluid my-auto pb-5">
+  <div class="row d-flex justify-content-around mt-5 ml-5 mr-5">
+    <div class="col-lg-6 col-sm-12 col-md-6">
+      <div class="card shadow onhover" (click)="routeToPrintRevenuReport()">
+        <div class="card-img">
+          <mat-icon>assignment</mat-icon>
+          <h5 class="text-center text-capitalize">Revenue Report</h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-sm-12 col-md-6">
+      <div class="card shadow onhover" (click)="routeToPrintPatientReport()">
+        <div class="card-img">
+          <mat-icon>local_hotel</mat-icon>
+          <h5 class="text-center text-capitalize">Patients Reports</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row d-flex justify-content-around mt-5 ml-5 mr-5">
+    <div class="col-lg-6 col-sm-12 col-md-6">
+      <div class="card shadow onhover" (click)="routeToPrintDoctorsReport()">
+        <div class="card-img">
+          <mat-icon>local_hospital</mat-icon>
+          <h5 class="text-center text-capitalize">Doctors Reports</h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-sm-12 col-md-6">
+      <div class="card shadow onhover" (click)="routeToAppointmentReport()">
+        <div class="card-img">
+          <mat-icon>meeting_room</mat-icon>
+          <h5 class="text-center text-capitalize">Appointment Reports</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <mat-divider></mat-divider> -->
+
+<div class="row d-flex justify-content-around mt-5 ml-5 mr-5">
+  <div class="col text-center onLoad-text">
+    <img src="assets/img/doctor/print.gif" width="192" height="170" />
+  </div>
+</div>
+<router-outlet></router-outlet>

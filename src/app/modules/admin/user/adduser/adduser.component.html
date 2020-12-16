@@ -1,0 +1,100 @@
+<div class="container-fluid mt-3 p-0">
+    <div class="card shadow">
+        <div class="card-title">
+            <h4 class="text-center main-bg pt-3 mt-1">- Add User -</h4>
+        </div>
+        <mat-divider class="mx-5"></mat-divider>
+        <form action="" class="form-group customhover" [formGroup]="addUserForm" (ngSubmit)="saveUserDetails();">
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+                <div class="col-lg-6 col-sm-12 col-md-6">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>User Name&nbsp;<sup class="text-danger">*</sup></mat-label>
+                        <input matInput placeholder="Ex. xyz" value="" formControlName="username" />
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="addUserForm.get('username') && addUserForm.get('username').touched && addUserForm.get('username').invalid">
+                        {{usernameInputMsg}}</p>
+                </div>
+                <div class="col-lg-6 col-sm-12 col-md-6">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Display Name <sup class="text-danger">*</sup></mat-label>
+                        <input matInput placeholder="Ex. xyz" value="" formControlName="displayName"
+                            [readonly]="doctorId!=0" />
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="addUserForm.get('displayName') && addUserForm.get('displayName').touched && addUserForm.get('displayName').invalid">
+                        {{displayNameInputMsg}}</p>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+                <div class="col-lg-6 col-sm-12 col-md-6">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Email Id&nbsp;<sup class="text-danger">*</sup></mat-label>
+                        <input matInput placeholder="Ex. xyz" value="" formControlName="emailId"
+                            [readonly]="doctorId!=0" />
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="addUserForm.get('emailId')&& addUserForm.get('emailId').touched && addUserForm.get('emailId').invalid">
+                        {{emailIdInputMsg}}</p>
+                </div>
+                <div class="col-lg-6 col-sm-12 col-md-6">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Telephone <sup class="text-danger">*</sup></mat-label>
+                        <span matPrefix>+91 &nbsp;</span>
+                        <input type="tel" matInput placeholder="555-555-1234" formControlName="mobileNo"
+                            [readonly]="doctorId!=0">
+                        <mat-icon matSuffix color="primary">phone</mat-icon>
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="addUserForm.get('mobileNo')&& addUserForm.get('mobileNo').touched && addUserForm.get('mobileNo').invalid">
+                        {{mobileNoInputMsg}}</p>
+                </div>
+                <!-- <div class="col-lg-6 col-sm-12 col-md-6">
+                   <mat-form-field class="field-full-width">
+            <mat-label>Role <sup class="text-danger">*</sup></mat-label>
+            <mat-select formControlName="doctorRole">
+              <mat-option *ngFor="let role of doctorRoleList" [value]="role">
+                {{role.doctorRoleName}}
+              </mat-option>
+            </mat-select>
+                </div> -->
+            </div>
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+                <div class="col-lg-6 col-sm-12 col-md-6 mx-auto">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Role <sup class="text-danger">*</sup></mat-label>
+                        <mat-select formControlName="userType">
+                            <mat-option *ngFor="let role of userTypeList" [value]="role">
+                                {{role.roleName}}
+                            </mat-option>
+                        </mat-select>
+                        <!-- <option [ngValue]="null">Select Here</option>
+                        <option *ngFor="let job of jobsList" [ngValue]="job">{{job.jobTitleName}}</option> -->
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="addUserForm.get('userType') && addUserForm.get('userType').touched && addUserForm.get('userType').invalid">
+                        Please select role</p>
+                </div>
+            </div>
+
+
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-around">
+                    <button type="submit" mat-raised-button color="primary" [disabled]="addUserForm.invalid">
+                        <mat-icon class="mr-2">save</mat-icon>Submit
+                    </button>
+                    <button type="reset" mat-raised-button color="accent">
+                        <mat-icon class="mr-2">360</mat-icon>Reset
+                    </button>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

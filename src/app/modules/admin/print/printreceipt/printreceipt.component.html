@@ -1,0 +1,74 @@
+<!-- <button (click)="openDialog('a')">Printpreview</button> -->
+
+<div class="container-fluid mt-3 p-0">
+    <div class="card shadow">
+        <div class="card-title">
+            <h4 class="text-center main-bg pt-3 mt-1">- Receipt -</h4>
+        </div>
+        <mat-divider class="mx-5"></mat-divider>
+        <form action="" class="form-group customhover" [formGroup]="receiptForm" (ngSubmit)="savereceiptFormSubmit()">
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5 w-50 mx-auto">
+                <div class="col-lg-6 col-sm-12 col-md-6">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Patient Name <sup class="text-danger">*</sup></mat-label>
+                        <mat-select formControlName="appointment">
+                            <mat-option *ngFor="let appointment of testedAppointmentList" [value]="appointment">
+                                {{appointment.patientNumber.patientName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="receiptForm.get('appointment') && receiptForm.get('appointment').touched && receiptForm.get('appointment').invalid">
+                        Please enter this field</p>
+                </div>
+                <div class="col-lg-6 col-sm-12 col-md-6">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Service Name</mat-label>
+                        <input matInput placeholder="" value="" formControlName="serviceName" />
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="receiptForm.get('serviceName') && receiptForm.get('serviceName').touched && receiptForm.get('serviceName').invalid">
+                        Please enter this field</p>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5 w-50 mx-auto">
+
+                <div class="col-lg-6 col-md-12 col-sm-12 mx-auto">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Total Amount In Words</mat-label>
+                        <input matInput placeholder="Ex. Three Hundred And Fifty" value=""
+                            formControlName="amountInWords" />
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="receiptForm.get('amountInWords') && receiptForm.get('amountInWords').touched && receiptForm.get('amountInWords').invalid">
+                        Please enter in words</p>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 mx-auto">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Total Amount In Digits</mat-label>
+                        <input matInput placeholder="Ex. 350" value="" formControlName="amount" />
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="receiptForm.get('amount') && receiptForm.get('amount').touched && receiptForm.get('amount').invalid">
+                        Please enter in numbers</p>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-around">
+                    <button type="submit" mat-raised-button color="primary" [disabled]='receiptForm.invalid'>
+                        <mat-icon class="mr-2">save</mat-icon>save
+                    </button>
+                    <button type="button" mat-raised-button color="accent" (click)="openDialog()">
+                        <mat-icon class="mr-2">print</mat-icon>Print Preview
+                    </button>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

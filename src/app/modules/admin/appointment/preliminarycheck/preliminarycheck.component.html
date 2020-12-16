@@ -1,0 +1,335 @@
+<div class="container-fluid mt-3 p-0">
+    <div class="card shadow">
+        <div class="card-title">
+            <h4 class="text-center main-bg pt-3 mt-1">- Preliminary Check -</h4>
+        </div>
+        <!-- <mat-divider class="mx-5"></mat-divider> -->
+
+        <div class="mt-3">
+            <div class="row d-flex justify-content-center mt-4 ml-5 mr-5 w-100 mx-auto">
+                <div class="col-lg-4 col-sm-12 col-md-6 text-center header-text">
+                    <div class="row">
+                        <div class="col">
+                            <p>
+                                Patient Number: {{patientNumber}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p>
+                                Patient Name:{{patientName}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-md-6 text-center header-text">
+                </div>
+                <div class="col-lg-4 col-sm-12 col-md-6 text-center header-text">
+
+                    <div class="row">
+                        <div class="col">
+                            <p>
+                                Age: {{age}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p>
+                                Date:{{date}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <mat-divider class="mx-5"></mat-divider>
+
+        <form action="" class="form-group customhover" [formGroup]="addDiagnosisForm"
+            (ngSubmit)="addDiagnosisFormSubmit()">
+
+            <div class=" float-right">
+                <img src="assets/img/doctor/preliminarycheck.gif" width="250" height="250" />
+            </div>
+            <!-- <div class="row d-flex justify-content-around mt-4 ml-5 mr-5 w-75 mx-auto"> -->
+            <!-- <div class="col-lg-5 col-sm-12 col-md-6 mr-5 ">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Patient Name</mat-label>
+                        <input matInput placeholder="Ex. xyz" value="" />
+                    </mat-form-field>
+                </div> -->
+            <!-- <div class="col-lg-5 col-sm-12 col-md-6 mr-5 float-left">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Age <sup class="text-danger">*</sup></mat-label>
+                        <input matInput placeholder="Ex. 25" value="" formControlName="age" />
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="addDiagnosisForm.get('age') && addDiagnosisForm.get('age').touched && addDiagnosisForm.get('age').invalid">
+                        Please enter this field</p>
+                </div> -->
+
+            <!-- </div> -->
+
+            <div class="row d-flex justify-content-around  mt-5 ml-5 mr-5 w-75 mx-auto">
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="row">
+                        <div class="col-lg-8 col-sm-8 col-md-8">
+                            <mat-form-field class="field-full-width">
+                                <mat-label>Height <sup class="text-danger">*</sup></mat-label>
+                                <input matInput placeholder="Ex. xyz" value="" formControlName="height" />
+                            </mat-form-field>
+                            <p style="color: red;"
+                                *ngIf="addDiagnosisForm.get('height') && addDiagnosisForm.get('height').touched && addDiagnosisForm.get('height').invalid">
+                                Please enter this field</p>
+                        </div>
+                        <div class="col-lg-4 col-sm-4 col-md-4">
+                            <mat-form-field class="field-full-width">
+                                <mat-label>units <sup class="text-danger">*</sup></mat-label>
+                                <mat-select formControlName="heightUnits">
+                                    <mat-option *ngFor="let hunit of heightUnits" [value]="hunit.value">
+                                        {{hunit.viewValue}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <p style="color: red;"
+                                *ngIf="addDiagnosisForm.get('heightUnits') && addDiagnosisForm.get('heightUnits').touched && addDiagnosisForm.get('heightUnits').invalid">
+                                Please enter this field</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="row">
+                        <div class="col-lg-8 col-sm-8 col-md-8">
+                            <mat-form-field class="field-full-width">
+                                <mat-label>Weight <sup class="text-danger">*</sup></mat-label>
+                                <input matInput placeholder="Ex. xyz" value="" formControlName="weight" />
+                            </mat-form-field>
+                            <p style="color: red;"
+                                *ngIf="addDiagnosisForm.get('weight') && addDiagnosisForm.get('weight').touched && addDiagnosisForm.get('weight').invalid">
+                                Please enter this field</p>
+                        </div>
+                        <div class="col-lg-4 col-sm-4 col-md-4">
+                            <mat-form-field class="field-full-width">
+                                <mat-label>units <sup class="text-danger">*</sup></mat-label>
+                                <mat-select formControlName="weightUnits">
+                                    <mat-option *ngFor="let wunit of weightUnits" [value]="wunit.value">
+                                        {{wunit.viewValue}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <p style="color: red;"
+                                *ngIf="addDiagnosisForm.get('weightUnits') && addDiagnosisForm.get('weightUnits').touched && addDiagnosisForm.get('weightUnits').invalid">
+                                Please enter this field</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-around  ml-5 mr-5 w-75 mx-auto">
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Blood Pressure <sup class="text-danger">*</sup></mat-label>
+                        <input matInput placeholder="Ex. xyz" value="" formControlName="bloodPreasure" />
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="addDiagnosisForm.get('bloodPreasure') && addDiagnosisForm.get('bloodPreasure').touched && addDiagnosisForm.get('bloodPreasure').invalid">
+                        Please enter this field</p>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            <mat-form-field class="field-full-width">
+                                <mat-label>Temperature <sup class="text-danger">*</sup></mat-label>
+                                <input matInput placeholder="Ex. xyz" value="" formControlName="temperature" />
+                            </mat-form-field>
+                            <p style="color: red;"
+                                *ngIf="addDiagnosisForm.get('temperature') && addDiagnosisForm.get('temperature').touched && addDiagnosisForm.get('temperature').invalid">
+                                Please enter this field</p>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <mat-form-field class="field-full-width">
+                                <mat-label>units <sup class="text-danger">*</sup></mat-label>
+                                <mat-select formControlName="temperatureUnits">
+                                    <mat-option *ngFor="let tunit of temperatureUnits" [value]="tunit.value">
+                                        {{tunit.viewValue}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <p style="color: red;"
+                                *ngIf="addDiagnosisForm.get('temperatureUnits') && addDiagnosisForm.get('temperatureUnits').touched && addDiagnosisForm.get('temperatureUnits').invalid">
+                                Please enter this field</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-around  ml-5 mr-5 w-75 mx-auto">
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <mat-label>Thyroid <sup class="text-danger">*</sup></mat-label>
+                    <mat-radio-group aria-label="Select Your Gender" color="primary" (change)='thyroid($event)'
+                        formControlName="thyroid">
+                        <mat-radio-button value="yes">Yes</mat-radio-button>
+                        <mat-radio-button value="no">No</mat-radio-button>
+                    </mat-radio-group>
+                    <p style="color: red;"
+                        *ngIf="addDiagnosisForm.get('thyroid') && addDiagnosisForm.get('thyroid').touched && addDiagnosisForm.get('thyroid').invalid">
+                        Please enter this field</p>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12" *ngIf="thyroidValue=='yes'">
+                    <!-- <p>reports chose file name</p> -->
+
+                    <!-- <label for="resumeFile">Resume/CV <sup class="text-danger">*</sup></label> -->
+                    <input type="file" class="form-control fileUpload" accept="application/pdf" id="fileUpload"
+                        #uploadThyroid hidden (change)="getThyroidFile(uploadThyroid,$event)"
+                        formControlName="thyroidReports" />
+                    <div>
+                        <button type="button" class="upload-resume-btn" mat-raised-button color="primary"
+                            (click)="uploadThyroid.click()">
+                            Upload thyroid report
+                        </button>
+                        <span class="file-name">&nbsp;{{thyroidFileName}}&nbsp;</span>
+                        <span style="color:red;" *ngIf="thyroidMessage">{{thyroidMessage}}</span>
+
+                        <p class="label-header">Thyroid</p>
+                        <button type="button" mat-stroked-button (click)="downloadThyroid()" class="download-btn"
+                            color='primary'>View Report</button>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="text-center main-bg-2 mt-5">Test Reports</h4>
+            <!--<div class="row d-flex justify-content-around  ml-5 mr-5 w-50 mx-auto mt-3">
+
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Test Name</mat-label>
+                        <input matInput placeholder="Ex. xyz" value="" />
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <input type="file" class="form-control fileUpload" accept="application/pdf" id="fileUpload"
+                    #uploadResume  hidden
+                    (change)="getResumeFile(uploadResume,$event)" />
+                <div>
+                    <button type="button" class="upload-resume-btn" mat-raised-button color="primary"
+                        (click)="uploadResume.click()">
+                        Upload Reports
+                    </button>
+                    <span class="file-name">&nbsp;{{resumeFileName}}&nbsp;</span>
+                    <span style="color:red;" *ngIf="resumeMessage">{{resumeMessage}}</span>
+                </div>
+                </div>
+            </div> -->
+            <!-- <div class="col-lg-12 col-md-12 col-sm-12 mt-3"> -->
+            <!-- Dynamic Row Starts here -->
+            <!-- <table class="table table-striped table-bordered mt-5 tablecss text-center shadow">
+                        <thead>
+                            <tr class="theading">
+                                <th>Sl.no</th>
+                                <th>Test Name</th>
+                                <th>Upload Reports</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let dynamic of dynamicArray; let i = index;">
+                                <td>
+                                    {{i+1}}.
+                                </td>
+                                <td>
+                                    <mat-form-field class="field-full-width">
+                                        <input matInput value="" [(ngModel)]="dynamicArray[i].testName"
+                                            [ngModelOptions]="{standalone: true}" />
+                                    </mat-form-field>
+                                </td>
+                                <td>
+                                    <input type="file" class="form-control fileUpload" accept="application/pdf"
+                                        id="fileUpload" #uploadResume hidden
+                                        (change)="getResumeFile(uploadResume,$event)"
+                                        [(ngModel)]="dynamicArray[i].uploadReport"
+                                        [ngModelOptions]="{standalone: true}" />
+                                    <div>
+                                        <button type="button" class="upload-resume-btn" mat-raised-button
+                                            color="primary" (click)="uploadResume.click()">
+                                            Upload Reports
+                                        </button>
+                                        <span class="file-name">&nbsp;{{resumeFileName}}&nbsp;</span>
+                                        <span style="color:red;" *ngIf="resumeMessage">{{resumeMessage}}</span>
+                                    </div>
+                                </td>
+                                <td (click)="addRow()" class="text-center"> -->
+            <!-- <i class="fa fa-plus fa-1x  text-light"></i>ac -->
+            <!-- <mat-icon class="rowAddIcon" title="Add" color="primary">add</mat-icon>
+                                </td> -->
+            <!-- <span  > ac-->
+            <!-- <td (click)="deleteRow(i)" class=" text-center" *ngIf='i!=0'> -->
+            <!-- <i class="fa fa-trash fa-1x  text-light"></i> ac-->
+            <!-- <mat-icon class="rowDeleteIcon" title="Delete" color="accent">delete</mat-icon>
+                                </td> -->
+            <!-- </span> ac-->
+            <!-- </tr>
+                        </tbody>
+                    </table> -->
+            <!-- Dynamic Row ends here -->
+            <!-- </div> -->
+            <form action="" [formGroup]="addTestReportForm" (ngSubmit)="addTestReportSubmit()">
+                <div class="row d-flex justify-content-around  ml-5 mr-5 w-100 mx-auto">
+
+                    <div class="col-lg-4 col-md-12 col-sm-12 mt-3 mx-auto">
+                        <mat-form-field class="field-full-width">
+                            <mat-label>Test Name</mat-label>
+                            <input matInput placeholder="Ex. xyz" value="" formControlName="testName" />
+                        </mat-form-field>
+                        <p style="color: red;"
+                            *ngIf="addTestReportForm.get('testName') && addTestReportForm.get('testName').touched && addTestReportForm.get('testName').invalid">
+                            Please enter this field</p>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12 mt-3 mx-auto">
+                        <input type="file" class="form-control fileUpload" accept="application/pdf" id="fileUpload1"
+                            #uploadTestReport hidden (change)="getTestReportFile(uploadTestReport,$event)"
+                            formControlName="testReportFileName" />
+                        <div>
+                            <button type="button" class="upload-resume-btn" mat-raised-button color="primary"
+                                (click)="uploadTestReport.click()">
+                                Upload Reports
+                            </button>
+                            <span class="file-name">&nbsp;{{testReportFileName}}&nbsp;</span>
+                            <span style="color:red;" *ngIf="testReportMessage">{{testReportMessage}}</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12 mt-3 mx-auto">
+
+                        <button type="submit" mat-raised-button color="primary" [disabled]='addTestReportForm.invalid'>
+                            <mat-icon class="mr-2">save</mat-icon>Save Report
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+
+
+
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-around">
+                    <button type="submit" mat-raised-button color="primary" [disabled]='addDiagnosisForm.invalid'>
+                        <mat-icon class="mr-2">save</mat-icon>Submit
+                    </button>
+                    <button type="button" mat-raised-button color="accent" (click)='gotoBack()'>
+                        <mat-icon class="mr-2">360</mat-icon>Back
+                    </button>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- <p class="label-header">Thyroid Report</p>
+            <button mat-stroked-button (click)="downloadThyroid()" class="download-btn">Download</button> -->

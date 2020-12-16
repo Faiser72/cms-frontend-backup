@@ -1,0 +1,127 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import "~@angular/material/theming";
+// Plus imports for other components in your app.
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Sen:wght@400;700;800&display=swap");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+@import "node_modules/bootstrap/scss/reboot";
+@import "node_modules/bootstrap/scss/type";
+@import "node_modules/bootstrap/scss/images";
+@import "node_modules/bootstrap/scss/code";
+@import "node_modules/bootstrap/scss/grid";
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+$mat-blue: (
+  50: #7f8e9e,
+  100: #49657b,
+  200: #476c8a,
+  300: #4279a3,
+  400: #3385c6,
+  500: #00539cff,
+  600: #32AEB1,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: $white-87-opacity,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: white,
+    A400: white,
+    A700: white,
+  ),
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$crypto-primary: mat-palette($mat-blue, 600);
+$crypto-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$crypto-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$crypto-theme: mat-light-theme($crypto-primary, $crypto-accent, $crypto-warn);
+$crypto-theme-dark: mat-dark-theme(
+  $crypto-primary,
+  $crypto-accent,
+  $crypto-warn
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+
+/* You can add global styles to this file, and also import other style files */
+
+// root colors
+
+:root {
+  /* Brand Logo Color */
+  --main-brand-color: #bd9a36;
+  /* Background Colors */
+  --main-bg-1-color: #3f51b5;
+  --main-bg-2-color: #ee436e;
+  --main-bg-3-color: #32AEB1;
+  --main-bg-4-color: #ffffff;
+  /* Fonts Families*/
+  --main-font-1-family: "Montserrat", sans-serif;
+  /* Fonts Colors*/
+  --main-font-1-color: #ffffff;
+  --main-font-2-color: #000000;
+  --main-font-3-color: #32AEB1;
+  --main-font-4-color: rgba(250,175,63,1);
+  --main-font-5-color:#137779;
+  /* Tiles */
+  --main-tile-1-color: #382f9c;
+  --main-tile-2-color: #f4f4f4;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  // font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: var(--main-font-1-family);
+}
+
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb {
+  max-height: 1px !important;
+  background: rgba(0, 0, 0, 0.26);
+}
+
+
+.theme-dark {
+  @include angular-material-theme($crypto-theme-dark);
+}
+
+.theme-light {
+  @include angular-material-theme($crypto-theme);
+}

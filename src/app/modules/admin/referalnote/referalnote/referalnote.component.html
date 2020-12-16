@@ -1,0 +1,89 @@
+<!-- <button (click)="openDialog('a')">Printpreview</button> -->
+
+<div class="container-fluid mt-3 p-0">
+    <div class="card shadow">
+        <div class="card-title">
+            <h4 class="text-center main-bg pt-3 mt-1">- Referral -</h4>
+        </div>
+        <mat-divider class="mx-5"></mat-divider>
+        <form action="" class="form-group customhover" [formGroup]="referalForm" (ngSubmit)="saveReferalFormSubmit()">
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5 w-50 mx-auto">
+                <div class="col-lg-6 col-sm-12 col-md-6">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Patient Name</mat-label>
+                        <input matInput placeholder="Ex. xyz" value="" formControlName="patientId" readonly="true" />
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="referalForm.get('patientId') && referalForm.get('patientId').touched && referalForm.get('patientId').invalid">
+                        Please enter this field</p>
+                </div>
+                <div class="col-lg-6 col-sm-12 col-md-6">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Age/Sex</mat-label>
+                        <input matInput placeholder="Ex. 25" value="" formControlName="age" readonly="true" />
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="referalForm.get('age') && referalForm.get('age').touched && referalForm.get('age').invalid">
+                        Please enter this field</p>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5 w-50 mx-auto">
+
+                <div class="col-lg-6 col-md-12 col-sm-12 mx-auto">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Referred By</mat-label>
+                        <input matInput placeholder="Ex. Dr. Sudhakar" value="" formControlName="referedBy"
+                            readonly="true" />
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="referalForm.get('referedBy') && referalForm.get('referedBy').touched && referalForm.get('referedBy').invalid">
+                        Please enter this field</p>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 mx-auto">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Date</mat-label>
+                        <input matInput type="date" placeholder="Ex. 25" value="" color="primary"
+                            formControlName="date" />
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="referalForm.get('date') && referalForm.get('date').touched && referalForm.get('date').invalid">
+                        Please enter this field</p>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5 w-50 mx-auto">
+
+                <div class="col-lg-12 col-md-12 col-sm-12 mx-auto">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Remarks</mat-label>
+                        <textarea matInput placeholder="Ex. fever, cold, chest pain etc..,"
+                            formControlName="remarks"></textarea>
+                        <mat-icon matSuffix color="primary">edit</mat-icon>
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="referalForm.get('remarks') && referalForm.get('remarks').touched && referalForm.get('remarks').invalid">
+                        Please enter this field</p>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+                <!-- <div class="col-lg-4 col-md-6 col-sm-12">
+                </div> -->
+                <div class="col-lg-6 col-md-6 col-sm-12 d-flex justify-content-around">
+                    <button type="submit" mat-raised-button color="primary" [disabled]='referalForm.invalid'>
+                        <mat-icon class="mr-2">save</mat-icon>save
+                    </button>
+                    <button type="button" mat-raised-button color="accent" (click)="openDialog()">
+                        <mat-icon class="mr-2">print</mat-icon>Print Preview
+                    </button>
+                    <button type="button" mat-raised-button color="accent" (click)="gotoBack()">
+                        <mat-icon class="mr-2">360</mat-icon>Back
+                    </button>
+                </div>
+                <!-- <div class="col-lg-4 col-md-6 col-sm-12">
+                </div> -->
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+<div class="container-fluid mt-3 p-0">
+    <div class="card shadow">
+        <div class="card-title">
+            <h4 class="text-center main-bg pt-3 mt-1">- View Details -</h4>
+        </div>
+        <mat-divider class="mx-5"></mat-divider>
+        <form action="" class="form-group customhover">
+
+            <div class="mat-elevation-z8">
+                <table class="table table-bordered tablecss">
+                    <thead>
+                        <tr class="dialog-title text-center">
+                            <th>Drug Name</th>
+                            <th>Strength</th>
+                            <th>Remarks</th>
+                            <th>Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let x of prescriptionDetails">
+                            <td>{{x.drugName}}</td>
+                            <td>{{x.strength}}</td>
+                            <td>{{x.remarks}}</td>
+                            <td>{{x.duration}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 
+            <h5 class="text-center main-bg-2"> Test Reports</h5>
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5 w-25">
+                <div class="col-2 text-center">1 . </div>
+                <div class="col-lg-6 col-sm-12 col-md-6">
+                    <button type="reset" mat-raised-button color="primary" class="float-left">
+                        <mat-icon class="mr-2">cloud_download</mat-icon>Download
+                    </button>
+                    <p>nofiles</p>
+                </div>
+            </div> -->
+
+
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-around">
+                    <!-- <button type="submit" mat-raised-button color="primary">
+                        <mat-icon class="mr-2">save</mat-icon>Submit
+                    </button> -->
+                    <button mat-raised-button color="accent" (click)="backTodiagonosis()">
+                        <mat-icon class="mr-2">360</mat-icon>Back
+                    </button>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

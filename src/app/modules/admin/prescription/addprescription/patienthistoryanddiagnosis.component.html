@@ -1,0 +1,192 @@
+<div class="container-fluid mt-3 p-0">
+    <div class="card shadow">
+        <div class="card-title">
+            <h4 class="text-center main-bg pt-3 mt-1">- Patient History And Diagonosis -</h4>
+        </div>
+        <!-- <mat-divider class="mx-5"></mat-divider> -->
+
+        <div class="mt-3">
+            <div class="row d-flex justify-content-center mt-4 ml-5 mr-5 w-100 mx-auto ">
+                <div class="col-lg-4 col-sm-12 col-md-6 text-center header-text">
+                    <p>
+                        Patient Number: {{patientNumber}}
+                    </p>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-md-6 text-center header-text">
+                    <p>
+                        Patient Name:{{patientName}}
+                    </p>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-md-6 text-center header-text">
+                    <p>
+                        Date:{{date}}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <mat-divider class="mx-5"></mat-divider>
+
+        <form action="" class="form-group customhover">
+            <div class="row d-flex justify-content-around  ml-5 mr-5 w-50 mx-auto mt-5">
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="row">
+                        <div class="col-lg-8 col-sm-8 col-md-8">
+                            <mat-form-field class="field-full-width">
+                                <mat-label>Height</mat-label>
+                                <input matInput placeholder="Ex. xyz" value="" />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-sm-4 col-md-4">
+                            <mat-form-field class="field-full-width">
+                                <mat-label>units</mat-label>
+                                <mat-select>
+                                    <mat-option *ngFor="let hunit of heightUnits" [value]="hunit.value">
+                                        {{hunit.viewValue}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="row">
+                        <div class="col-lg-8 col-sm-8 col-md-8">
+                            <mat-form-field class="field-full-width">
+                                <mat-label>Weight</mat-label>
+                                <input matInput placeholder="Ex. xyz" value="" />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-sm-4 col-md-4">
+                            <mat-form-field class="field-full-width">
+                                <mat-label>units</mat-label>
+                                <mat-select>
+                                    <mat-option *ngFor="let wunit of weightUnits" [value]="wunit.value">
+                                        {{wunit.viewValue}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-around  ml-5 mr-5 w-50 mx-auto">
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Blood Preasure</mat-label>
+                        <input matInput placeholder="Ex. xyz" value="" />
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            <mat-form-field class="field-full-width">
+                                <mat-label>Temperature</mat-label>
+                                <input matInput placeholder="Ex. xyz" value="" />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <mat-form-field class="field-full-width">
+                                <mat-label>units</mat-label>
+                                <mat-select>
+                                    <mat-option *ngFor="let tunit of temperatureUnits" [value]="tunit.value">
+                                        {{tunit.viewValue}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-around  ml-5 mr-5 w-50 mx-auto mt-4">
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <mat-label>Thyroid </mat-label>
+                    <mat-radio-group aria-label="Select Your Gender" color="primary" (change)='thyroid($event)'>
+                        <mat-radio-button value="yes">Yes</mat-radio-button>
+                        <mat-radio-button value="no">No</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12" *ngIf="thyroidValue=='yes'">
+                    <!-- <p>reports chose file name</p> -->
+
+                    <!-- <label for="resumeFile">Resume/CV <sup class="text-danger">*</sup></label> -->
+                    <input type="file" class="form-control fileUpload" accept="application/pdf" id="fileUpload"
+                        #uploadThyroid hidden (change)="getThyroidFile(uploadThyroid,$event)" />
+                    <div>
+                        <button type="button" class="upload-resume-btn" mat-raised-button color="primary"
+                            (click)="uploadThyroid.click()">
+                            Upload Reports
+                        </button>
+                        <span class="file-name">&nbsp;{{thyroidFileName}}&nbsp;</span>
+                        <span style="color:red;" *ngIf="thyroidMessage">{{thyroidMessage}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="text-center main-bg-2 mt-5">Last Visit Details</h4>
+            <div class="row d-flex justify-content-around  ml-5 mr-5 w-50 mx-auto mt-3">
+                <table class="table tablecss table-bordered shadow text-center" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 30%;">Date</th>
+                            <th scope="col" style="width: 50%;">Diagnosis</th>
+                            <th scope="col" style="width: 20%;">Prescription</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td><mat-icon color="primary" class="hover" (click)='routeTOViewPatientDiagnosisdetails()'>view_column</mat-icon></td>
+                        </tr>
+                        <tr>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td><mat-icon color="primary" class="hover" (click)='routeTOViewPatientDiagnosisdetails()'>view_column</mat-icon></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><button type="submit" mat-raised-button color="primary">
+                                <mat-icon class="mr-2">save</mat-icon>View More
+                            </button></td>
+                            <!-- <td>Thornton</td>
+                            <td>@twitter</td> -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row d-flex justify-content-around  ml-5 mr-5 w-50 mx-auto mt-2">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Diagonosis</mat-label>
+                        <textarea matInput placeholder="Ex. "></textarea>
+                        <mat-icon matSuffix color="primary">edit</mat-icon>
+                    </mat-form-field>
+                </div>
+            </div>
+
+
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-around">
+                    <button type="submit" mat-raised-button color="primary">
+                        <mat-icon class="mr-2">save</mat-icon>Submit
+                    </button>
+                    <button type="reset" mat-raised-button color="accent">
+                        <mat-icon class="mr-2">360</mat-icon>Reset
+                    </button>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>

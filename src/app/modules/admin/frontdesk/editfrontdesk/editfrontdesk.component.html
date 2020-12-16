@@ -1,0 +1,97 @@
+<div class="container-fluid mt-3 p-0">
+    <div class="card shadow">
+        <div class="card-title">
+            <h4 class="text-center main-bg pt-3 mt-1">- Edit Front Desk -</h4>
+        </div>
+        <mat-divider class="mx-5"></mat-divider>
+        <form action="" class="form-group customhover" [formGroup]="editFrontDeskForm"
+            (ngSubmit)="updateFrontDeskDetails();">
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+                <div class="col-lg-6 col-sm-12 col-md-6">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>User Name&nbsp;<sup class="text-danger">*</sup></mat-label>
+                        <input matInput placeholder="Ex. xyz" value="" formControlName="frontDeskName" />
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="editFrontDeskForm.get('frontDeskName') && editFrontDeskForm.get('frontDeskName').touched && editFrontDeskForm.get('frontDeskName').invalid">
+                        Please Enter This Field</p>
+                </div>
+                <div class="col-lg-6 col-sm-12 col-md-6 mt-4 mx-auto text-center">
+                    <mat-label>Gender <sup class="text-danger">*</sup></mat-label>
+                    <mat-radio-group aria-label="Select Your Gender" color="primary" formControlName="gender">
+                        <mat-radio-button value="male">Male</mat-radio-button>
+                        <mat-radio-button value="female">Female</mat-radio-button>
+                        <!-- <mat-radio-button value="3">Others</mat-radio-button> -->
+                    </mat-radio-group>
+                    <p style="color: red;"
+                        *ngIf="editFrontDeskForm.get('gender') && editFrontDeskForm.get('gender').touched && editFrontDeskForm.get('gender').invalid">
+                        Please select your gender</p>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+                <div class="col-lg-6 col-sm-12 col-md-6">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Date Of Birth <sup class="text-danger">*</sup></mat-label>
+                        <input matInput [matDatepicker]="picker" placeholder="Ex. 12/30/1995" value="" #dob
+                            (dateChange)='ageFromDateOfBirth($event)' formControlName="dob" [max]="minDate" />
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="editFrontDeskForm.get('dob') && editFrontDeskForm.get('dob').touched && editFrontDeskForm.get('dob').invalid">
+                        Please select Your birth date</p>
+                </div>
+                <div class="col-lg-6 col-sm-12 col-md-6">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Email Id&nbsp;<sup class="text-danger">*</sup></mat-label>
+                        <input matInput placeholder="Ex. xyz" value="" formControlName="emailId" readonly='true' />
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="editFrontDeskForm.get('emailId')&& editFrontDeskForm.get('emailId').touched && editFrontDeskForm.get('emailId').invalid">
+                        {{emailIdInputMsg}}</p>
+                </div>
+                <!-- <div class="col-lg-6 col-sm-12 col-md-6">
+                   <mat-form-field class="field-full-width">
+            <mat-label>Role <sup class="text-danger">*</sup></mat-label>
+            <mat-select formControlName="doctorRole">
+              <mat-option *ngFor="let role of doctorRoleList" [value]="role">
+                {{role.doctorRoleName}}
+              </mat-option>
+            </mat-select>
+                </div> -->
+            </div>
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+                <div class="col-lg-6 col-sm-12 col-md-6 mx-auto">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Telephone <sup class="text-danger">*</sup></mat-label>
+                        <span matPrefix>+91 &nbsp;</span>
+                        <input type="tel" matInput placeholder="555-555-1234" formControlName="mobileNo">
+                        <mat-icon matSuffix color="primary">phone</mat-icon>
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="editFrontDeskForm.get('mobileNo')&& editFrontDeskForm.get('mobileNo').touched && editFrontDeskForm.get('mobileNo').invalid">
+                        {{mobileNoInputMsg}}</p>
+                </div>
+            </div>
+
+
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-around">
+                    <button type="submit" mat-raised-button color="primary" [disabled]="editFrontDeskForm.invalid">
+                        <mat-icon class="mr-2">save</mat-icon>Update
+                    </button>
+                    <button type="button" mat-raised-button color="accent" (click)='backToFrontDeskList()'>
+                        <mat-icon class="mr-2">360</mat-icon>Back
+                    </button>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

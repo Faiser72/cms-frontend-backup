@@ -1,0 +1,92 @@
+<div class="container-fluid mt-3">
+    <div class="card">
+        <div class="card-title">
+            <h4 class="text-center main-bg pt-3">- Specialization Master -</h4>
+        </div>
+        <mat-divider class="mx-5"></mat-divider>
+        <div class="card-body">
+            <div class="card w-50 d-flex justify-content-center border-0 mx-auto">
+                <form class="form-group customhover" [formGroup]="addDoctorRoleMasterForm">
+                    <mat-form-field class="master-full-width">
+                        <mat-label>Specialization Name</mat-label>
+                        <input matInput placeholder="Enter Specialization Name" formControlName="doctorRoleName">
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="addDoctorRoleMasterForm.get('doctorRoleName') && addDoctorRoleMasterForm.get('doctorRoleName').touched && addDoctorRoleMasterForm.get('doctorRoleName').invalid">
+                        {{doctorRoleNameInputMsg}}</p>
+
+                    <div class="text-center mt-4">
+                        <button [disabled]="addDoctorRoleMasterForm.invalid" mat-raised-button *ngIf="!btnFlag"
+                            class="mb-2 mr-3 submit-btn" color="primary" type="submit"
+                            (click)="saveDoctorRoleDetails()">
+                            <mat-icon class="mr-2">save</mat-icon>Save
+                        </button>
+                        <button [disabled]="addDoctorRoleMasterForm.invalid" mat-raised-button *ngIf="btnFlag"
+                            class="mb-2 mr-3 submit-btn" color="primary" type="submit"
+                            (click)="updateDoctorRoleDetails()">
+                            <mat-icon class="mr-2">save</mat-icon>Update
+                        </button>
+                        <button type="reset" class="mb-2 reset-btn" mat-raised-button color="warn" *ngIf="btnFlag"
+                            (click)="customReset()">
+                            <mat-icon class="mr-2">cancel</mat-icon>Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <router-outlet></router-outlet> -->
+
+<br />
+<h4 class="title-header">- Role List -</h4>
+
+<div class="text-center">
+    <mat-form-field class="search">
+        <!-- <mat-label>Search Department</mat-label> -->
+        <input matInput (keyup)="applyFilter($event)" placeholder="Search here..." [(ngModel)]="searchValue" />
+    </mat-form-field>
+</div>
+
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+        <!-- ID Column -->
+        <ng-container matColumnDef="slNo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_header">Sl.no</th>
+            <td mat-cell *matCellDef="let row">{{dataSource.filteredData.indexOf(row) + 1}}.</td>
+        </ng-container>
+
+        <!-- Job Title Column -->
+        <ng-container matColumnDef="doctorRoleName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_header">
+                Doctor Role Name
+            </th>
+            <td mat-cell *matCellDef="let row">{{ row.doctorRoleName }}</td>
+        </ng-container>
+
+        <!-- Action Column -->
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef class="table_header">Action</th>
+            <td mat-cell *matCellDef="let row;">
+                <div class="action-btn">
+                    <a (click)="routeToEditDoctorRole(this.row)" class="action-link">
+                        <mat-icon class="edit-btn" title="Edit">edit</mat-icon>
+                    </a>
+                </div>
+                <span style="color: #3f51b5;">|</span>
+                <div class="action-btn">
+                    <a (click)="routeToDeleteDoctorRole(this.row)" class="action-link">
+                        <mat-icon class="delete-btn" title="Delete">delete_forever</mat-icon>
+                    </a>
+                </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr class="row-style" mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+
+<br />

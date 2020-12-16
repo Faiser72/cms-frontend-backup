@@ -1,0 +1,182 @@
+<div class="container-fluid mt-3 p-0">
+    <div class="card shadow">
+        <div class="card-title">
+            <h4 class="text-center main-bg pt-3 mt-1">- Update Patients -</h4>
+        </div>
+        <mat-divider class="mx-5"></mat-divider>
+        <form action="" class="form-group customhover" [formGroup]="editPatientDetailsForm"
+            (ngSubmit)="updatePatientDetailsFormSubmit()">
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+                <div class="col-lg-4 col-sm-12 col-md-6">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Patient Name <sup class="text-danger">*</sup></mat-label>
+                        <input matInput placeholder="Ex. xyz" value="" formControlName="patientName" />
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="editPatientDetailsForm.get('patientName') && editPatientDetailsForm.get('patientName').touched && editPatientDetailsForm.get('patientName').invalid">
+                        Please enter this field</p>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-md-6">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Patient Number <sup class="text-danger">*</sup></mat-label>
+                        <input matInput placeholder="Ex. xyz" value="" formControlName="patientNumber" />
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="editPatientDetailsForm.get('patientNumber') && editPatientDetailsForm.get('patientNumber').touched && editPatientDetailsForm.get('patientNumber').invalid">
+                        {{patientNumberInputMsg}}</p>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-md-6">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Date Of Birth <sup class="text-danger">*</sup></mat-label>
+                        <input matInput [matDatepicker]="picker" placeholder="Ex. 12/30/1995" value="" #dob
+                            (dateChange)='ageFromDateOfBirth($event)' formControlName="dob" [max]="minDate" />
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="editPatientDetailsForm.get('dob') && editPatientDetailsForm.get('dob').touched && editPatientDetailsForm.get('dob').invalid">
+                        Please enter this field</p>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-around ml-5 mr-5">
+                <div class="col-lg-4 col-sm-12 col-md-6">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Telephone <sup class="text-danger">*</sup></mat-label>
+                        <span matPrefix>+91 &nbsp;</span>
+                        <input type="tel" matInput placeholder="555-555-1234" formControlName="phoneNumber">
+                        <mat-icon matSuffix color="primary">phone</mat-icon>
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="editPatientDetailsForm.get('phoneNumber') && editPatientDetailsForm.get('phoneNumber').touched && editPatientDetailsForm.get('phoneNumber').invalid">
+                        {{phoneNumberInputMsg}}</p>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-md-6">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Email Id <sup class="text-danger">*</sup></mat-label>
+                        <input matInput type="email" placeholder="Ex. example@abc.com" value=""
+                            formControlName="emailId" />
+                        <mat-icon matSuffix color="primary">email</mat-icon>
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="editPatientDetailsForm.get('emailId') && editPatientDetailsForm.get('emailId').touched && editPatientDetailsForm.get('emailId').invalid">
+                        Please enter valid email ID</p>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-md-6 mt-4 text-center">
+                    <mat-label>Gender : <sup class="text-danger">*</sup></mat-label>
+                    <mat-radio-group aria-label="Select Your Gender" color="primary" formControlName="gender">
+                        <mat-radio-button value="male">Male</mat-radio-button>
+                        <mat-radio-button value="female">Female</mat-radio-button>
+                        <!-- <mat-radio-button value="3">Others</mat-radio-button> -->
+                    </mat-radio-group>
+                    <p style="color: red;"
+                        *ngIf="editPatientDetailsForm.get('gender') && editPatientDetailsForm.get('gender').touched && editPatientDetailsForm.get('gender').invalid">
+                        Please enter this field</p>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+                <div class="col-lg-4 col-md-6 col-sm-12 mt-3">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>WhatsApp Number</mat-label>
+                        <span matPrefix>+91 &nbsp;</span>
+                        <input type="tel" matInput placeholder="555-555-1234" formControlName="whatsAppNumber">
+                        <mat-icon matSuffix color="primary"><i class="fa fa-whatsapp" aria-hidden="true"></i></mat-icon>
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="editPatientDetailsForm.get('whatsAppNumber') && editPatientDetailsForm.get('whatsAppNumber').touched && editPatientDetailsForm.get('whatsAppNumber').invalid">
+                        Please enter valid number</p>
+                </div>
+                <div class="col-lg-8 col-md-6 col-sm-12">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Address <sup class="text-danger">*</sup></mat-label>
+                        <textarea matInput placeholder="Ex. #83, 6th cross opposite to kfc, jalahalli bangalore"
+                            formControlName="address"></textarea>
+                        <mat-icon matSuffix color="primary">home</mat-icon>
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="editPatientDetailsForm.get('address') && editPatientDetailsForm.get('address').touched && editPatientDetailsForm.get('address').invalid">
+                        Please enter this field</p>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+                <div class="col-lg-6 col-md-12 col-sm-12 mt-3">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Registered Date <sup class="text-danger">*</sup></mat-label>
+                        <input matInput [matDatepicker]="regdate" placeholder="Ex. 12/30/1995" value=""
+                            formControlName="registeredDate" [max]="minDate" />
+                        <mat-datepicker-toggle matSuffix [for]="regdate"></mat-datepicker-toggle>
+                        <mat-datepicker #regdate></mat-datepicker>
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="editPatientDetailsForm.get('registeredDate') && editPatientDetailsForm.get('registeredDate').touched && editPatientDetailsForm.get('registeredDate').invalid">
+                        Please enter this field</p>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Reason For Visit <sup class="text-danger">*</sup></mat-label>
+                        <textarea matInput placeholder="Ex. fever, cold, chest pain etc..,"
+                            formControlName="reasonForVisit"></textarea>
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="editPatientDetailsForm.get('reasonForVisit') && editPatientDetailsForm.get('reasonForVisit').touched && editPatientDetailsForm.get('reasonForVisit').invalid">
+                        Please enter this field</p>
+                </div>
+            </div>
+
+
+            <h4 class="text-center main-bg-2">Emergency Contact Details</h4>
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Name <sup class="text-danger">*</sup></mat-label>
+                        <input matInput placeholder="Ex. xyz" value="" formControlName="emergencyContactName" />
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="editPatientDetailsForm.get('emergencyContactName') && editPatientDetailsForm.get('emergencyContactName').touched && editPatientDetailsForm.get('emergencyContactName').invalid">
+                        Please enter this field</p>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12">
+
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Telephone <sup class="text-danger">*</sup></mat-label>
+                        <span matPrefix>+91 &nbsp;</span>
+                        <input type="tel" matInput placeholder="555-555-1234" formControlName="emergencyContactNumber">
+                        <mat-icon matSuffix color="primary">phone</mat-icon>
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="editPatientDetailsForm.get('emergencyContactNumber') && editPatientDetailsForm.get('emergencyContactNumber').touched && editPatientDetailsForm.get('emergencyContactNumber').invalid">
+                        Please enter valid phone number</p>
+                </div>
+
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Relation <sup class="text-danger">*</sup></mat-label>
+                        <input matInput placeholder="Ex. xyz" value="" formControlName="emergencyContactRelation" />
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="editPatientDetailsForm.get('emergencyContactRelation') && editPatientDetailsForm.get('emergencyContactRelation').touched && editPatientDetailsForm.get('emergencyContactRelation').invalid">
+                        Please enter this field</p>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-around">
+                    <button type="submit" mat-raised-button color="primary" [disabled]='editPatientDetailsForm.invalid'>
+                        <mat-icon class="mr-2">save</mat-icon>Update
+                    </button>
+                    <button type="button" mat-raised-button color="accent" (click)="gotoBack()">
+                        <mat-icon class="mr-2">360</mat-icon>Back
+                    </button>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

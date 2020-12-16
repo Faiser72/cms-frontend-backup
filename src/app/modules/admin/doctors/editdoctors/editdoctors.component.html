@@ -1,0 +1,414 @@
+<div class="container-fluid mt-3 p-0">
+  <div class="card shadow">
+    <div class="card-title">
+      <h4 class="text-center main-bg pt-3 mt-1">- Add Doctors -</h4>
+    </div>
+    <mat-divider class="mx-5"></mat-divider>
+    <form action="" class="form-group customhover" [formGroup]="editDoctorDetailsForm"
+      (ngSubmit)="UpdateDoctorDetails()">
+      <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+        <div class="col-lg-9 col-sm-12 col-md-6">
+          <div class="row">
+            <div class="col-lg-12 col-sm-12 col-md-12">
+              <mat-form-field class="field-full-width">
+                <mat-label>Doctor Name <sup class="text-danger">*</sup></mat-label>
+                <input matInput placeholder="Ex. Dr. Sudhakar" value="" formControlName="doctorName" />
+                <mat-icon matSuffix class="mr-2" color='primary'><i class="fa fa-user-md" aria-hidden="true"></i>
+                </mat-icon>
+              </mat-form-field>
+              <p style="color: red;"
+                *ngIf="editDoctorDetailsForm.get('doctorName') && editDoctorDetailsForm.get('doctorName').touched && editDoctorDetailsForm.get('doctorName').invalid">
+                Please enter this field</p>
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-lg-12 col-sm-12 col-md-12">
+              <mat-form-field class="field-full-width">
+                <mat-label>Qualification <sup class="text-danger">*</sup></mat-label>
+                <input matInput placeholder="Ex. MBBS, MD" value="" formControlName="qualification" />
+              </mat-form-field>
+              <p style="color: red;"
+                *ngIf="editDoctorDetailsForm.get('qualification') && editDoctorDetailsForm.get('qualification').touched && editDoctorDetailsForm.get('qualification').invalid">
+                Please enter this field</p>
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-lg-12 col-sm-12 col-md-12">
+              <mat-form-field class="field-full-width">
+                <mat-label>Specialization <sup class="text-danger">*</sup></mat-label>
+                <input matInput placeholder="Ex. Dermatologists" value="" formControlName="specialization" />
+              </mat-form-field>
+              <p style="color: red;"
+                *ngIf="editDoctorDetailsForm.get('specialization') && editDoctorDetailsForm.get('specialization').touched && editDoctorDetailsForm.get('specialization').invalid">
+                Please enter this field</p>
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-lg-12 col-sm-12 col-md-12">
+              <mat-form-field class="field-full-width">
+                <mat-label>Register Number <sup class="text-danger">*</sup></mat-label>
+                <input matInput placeholder="Ex. CMS123VETO" value="" formControlName="registerNo" />
+              </mat-form-field>
+              <p style="color: red;"
+                *ngIf="editDoctorDetailsForm.get('registerNo') && editDoctorDetailsForm.get('registerNo').touched && editDoctorDetailsForm.get('registerNo').invalid">
+                Please enter this field</p>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-lg-5 col-sm-12 col-md-6">
+           
+          </div> -->
+        <div class="col-lg-2 col-sm-12 col-md-6">
+          <label for="avatar">Profile Photo</label>
+          <div class="text-left mt-2">
+            <img [src]="placeholder_path" alt="" width="150px" height="180px" class="p-1 border profile-holder"
+              (click)="photoUpload.click()" />
+            <input type="file" name="photoUpload" accept="image/*" id="photoUpload" #photoUpload
+              (change)="getPhotoFile(photoUpload, $event)" hidden formControlName="avatar" />
+            <div>
+              <span class="candidate-photo-name">&nbsp;{{ doctorPhotoName }}&nbsp;</span>
+              <span style="color: red;" *ngIf="photoMessage">{{
+                photoMessage
+                }}</span>
+            </div>
+            <br />
+          </div>
+          <p style="color: red;"
+            *ngIf="editDoctorDetailsForm.get('avatar') && editDoctorDetailsForm.get('avatar').touched && editDoctorDetailsForm.get('avatar').invalid">
+            Please enter this field</p>
+        </div>
+      </div>
+
+      <!-- <div class="row d-flex justify-content-around ml-5 mr-5">
+          <div class="col-lg-4 col-sm-12 col-md-6">
+            <mat-form-field class="field-full-width">
+              <mat-label>Doctor Name</mat-label>
+              <input matInput placeholder="Ex. Dr. Sudhakar" value="" />
+            </mat-form-field>
+          </div>
+          <div class="col-lg-4 col-sm-12 col-md-6">
+            <mat-form-field class="field-full-width">
+              <mat-label>Qualification</mat-label>
+              <input matInput placeholder="Ex. MBBS, MD" value="" />
+            </mat-form-field>
+          </div>
+          <div class="col-lg-4 col-sm-12 col-md-6">
+            <mat-form-field class="field-full-width">
+              <mat-label>Specialization</mat-label>
+              <input matInput placeholder="Ex. Dermatologists" value="" />
+            </mat-form-field>
+          </div>
+        </div> -->
+
+      <div class="row d-flex justify-content-around ml-5 mr-5">
+        <div class="col-lg-2 col-sm-12 col-md-6">
+          <mat-form-field class="field-full-width">
+            <mat-label>Date Of Birth <sup class="text-danger">*</sup></mat-label>
+            <input matInput [matDatepicker]="picker" placeholder="Ex. 12/30/1995" value="" #dob
+              (dateChange)='ageFromDateOfBirth($event)' formControlName="dob" [max]="minDate" />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <p style="color: red;"
+            *ngIf="editDoctorDetailsForm.get('dob') && editDoctorDetailsForm.get('dob').touched && editDoctorDetailsForm.get('dob').invalid">
+            Please select photo</p>
+        </div>
+        <div class="col-lg-1 col-sm-12 col-md-6">
+          <mat-form-field class="field-full-width">
+            <mat-label>Age <sup class="text-danger">*</sup></mat-label>
+            <input matInput placeholder="Ex. 25" value="{{age}}" formControlName="age" readonly="true" />
+          </mat-form-field>
+          <p style="color: red;"
+            *ngIf="editDoctorDetailsForm.get('age') && editDoctorDetailsForm.get('age').touched && editDoctorDetailsForm.get('age').invalid">
+            Please enter this field</p>
+        </div>
+        <div class="col-lg-3 mt-4 col-sm-12 col-md-6 text-center">
+          <mat-label>Gender <sup class="text-danger">*</sup></mat-label>
+          <mat-radio-group aria-label="Select Your Gender" color="primary" formControlName="gender">
+            <mat-radio-button value="male">Male</mat-radio-button>
+            <mat-radio-button value="female">Female</mat-radio-button>
+            <!-- <mat-radio-button value="3">Others</mat-radio-button> -->
+          </mat-radio-group>
+          <p style="color: red;"
+            *ngIf="editDoctorDetailsForm.get('gender') && editDoctorDetailsForm.get('gender').touched && editDoctorDetailsForm.get('gender').invalid">
+            Please select your gender</p>
+        </div>
+        <div class="col-lg-2 col-sm-12 col-md-6">
+          <mat-form-field class="field-full-width">
+            <mat-label>Experience <sup class="text-danger">*</sup></mat-label>
+            <input matInput placeholder="Ex. 5 years" value="" formControlName="experience" />
+          </mat-form-field>
+          <p style="color: red;"
+            *ngIf="editDoctorDetailsForm.get('experience') && editDoctorDetailsForm.get('experience').touched && editDoctorDetailsForm.get('experience').invalid">
+            Please enter this field</p>
+        </div>
+        <div class="col-lg-3 col-sm-12 col-md-6">
+          <mat-form-field class="field-full-width">
+            <mat-label>Joining Date <sup class="text-danger">*</sup></mat-label>
+            <input matInput [matDatepicker]="jdate" placeholder="Ex. 12/30/1995" value=""
+              formControlName="joiningDate" />
+            <mat-datepicker-toggle matSuffix [for]="jdate"></mat-datepicker-toggle>
+            <mat-datepicker #jdate></mat-datepicker>
+          </mat-form-field>
+          <p style="color: red;"
+            *ngIf="editDoctorDetailsForm.get('joiningDate') && editDoctorDetailsForm.get('joiningDate').touched && editDoctorDetailsForm.get('joiningDate').invalid">
+            Please enter this field</p>
+        </div>
+      </div>
+
+      <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <h4 class="text-center main-bg-2">Morning visiting time <sup class="text-danger">*</sup></h4>
+          <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <mat-form-field class="field-full-width">
+                <mat-label>From</mat-label>
+                <input matInput type="time" placeholder="Ex. Dermatologists" value="" class="time"
+                  formControlName="morningVisitFrom" />
+                <!-- <mat-icon matSuffix color="primary">access_time</mat-icon> -->
+              </mat-form-field>
+              <p style="color: red;"
+                *ngIf="editDoctorDetailsForm.get('morningVisitFrom') && editDoctorDetailsForm.get('morningVisitFrom').touched && editDoctorDetailsForm.get('morningVisitFrom').invalid">
+                Please enter this field</p>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <mat-form-field class="field-full-width">
+                <mat-label>To</mat-label>
+                <input matInput type="time" placeholder="Ex. Dermatologists" value="" class="time"
+                  formControlName="morningVisitTo" />
+                <!-- <mat-icon matSuffix color="primary">access_time</mat-icon> -->
+              </mat-form-field>
+              <p style="color: red;"
+                *ngIf="editDoctorDetailsForm.get('morningVisitTo') && editDoctorDetailsForm.get('morningVisitTo').touched && editDoctorDetailsForm.get('morningVisitTo').invalid">
+                Please enter this field</p>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <h4 class="text-center main-bg-2">Evening visiting time <sup class="text-danger">*</sup></h4>
+          <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <mat-form-field class="field-full-width">
+                <mat-label>From</mat-label>
+                <input matInput type="time" placeholder="Ex. Dermatologists" value="" class="time"
+                  formControlName="eveningVisitFrom" />
+                <!-- <mat-icon matSuffix color="primary">access_time</mat-icon> -->
+              </mat-form-field>
+              <p style="color: red;"
+                *ngIf="editDoctorDetailsForm.get('eveningVisitFrom') && editDoctorDetailsForm.get('eveningVisitFrom').touched && editDoctorDetailsForm.get('eveningVisitFrom').invalid">
+                Please enter this field</p>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <mat-form-field class="field-full-width">
+                <mat-label>To</mat-label>
+                <input matInput type="time" placeholder="Ex. Dermatologists" value="" class="time"
+                  formControlName="eveningVisitTo" />
+                <!-- <mat-icon matSuffix color="primary">access_time</mat-icon> -->
+              </mat-form-field>
+              <p style="color: red;"
+                *ngIf="editDoctorDetailsForm.get('eveningVisitTo') && editDoctorDetailsForm.get('eveningVisitTo').touched && editDoctorDetailsForm.get('eveningVisitTo').invalid">
+                Please enter this field</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <mat-form-field class="field-full-width">
+            <mat-label>Address <sup class="text-danger">*</sup></mat-label>
+            <textarea matInput placeholder="Ex. #83, 6th cross opposite to kfc, jalahalli bangalore"
+              formControlName="address"></textarea>
+            <mat-icon matSuffix color="primary">home</mat-icon>
+          </mat-form-field>
+          <p style="color: red;"
+            *ngIf="editDoctorDetailsForm.get('address') && editDoctorDetailsForm.get('address').touched && editDoctorDetailsForm.get('address').invalid">
+            Please enter this field</p>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12 mt-3">
+          <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <mat-form-field class="field-full-width">
+                <mat-label>Telephone <sup class="text-danger">*</sup></mat-label>
+                <span matPrefix>+91 &nbsp;</span>
+                <input type="tel" matInput placeholder="555-555-1234" formControlName="phoneNumber">
+                <mat-icon matSuffix color="primary">phone</mat-icon>
+              </mat-form-field>
+              <p style="color: red;"
+                *ngIf="editDoctorDetailsForm.get('phoneNumber') && editDoctorDetailsForm.get('phoneNumber').touched && editDoctorDetailsForm.get('phoneNumber').invalid">
+                {{phoneNumberInputMsg}}</p>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <mat-form-field class="field-full-width">
+                <mat-label>Email Id <sup class="text-danger">*</sup></mat-label>
+                <input matInput type="email" placeholder="Ex. example@abc.com" value="" formControlName="emailId"
+                  readonly="true" />
+                <mat-icon matSuffix color="primary">email</mat-icon>
+              </mat-form-field>
+              <p style="color: red;"
+                *ngIf="editDoctorDetailsForm.get('emailId') && editDoctorDetailsForm.get('emailId').touched && editDoctorDetailsForm.get('emailId').invalid">
+                {{emailIdInputMsg}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <!-- <mat-form-field class="field-full-width">
+              <mat-label>Role</mat-label>
+              <input matInput placeholder="Ex. Surgen" value="" />
+            </mat-form-field> -->
+
+          <!-- <mat-form-field class="field-full-width">
+            <mat-label>Role <sup class="text-danger">*</sup></mat-label>
+            <mat-select formControlName="doctorRole">
+              <mat-option *ngFor="let role of doctorRoleList" [value]="role">
+                {{role.doctorRoleName}}
+              </mat-option>
+            </mat-select> -->
+
+          <mat-form-field class="field-full-width">
+            <mat-label>Role <sup class="text-danger">*</sup></mat-label>
+            <input type="text" matInput formControlName="doctorRole" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+              <mat-option *ngFor="let role of filteredOptions | async" [value]="role">
+                {{role.doctorRoleName}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <p style="color: red;"
+            *ngIf="editDoctorDetailsForm.get('doctorRole') && editDoctorDetailsForm.get('doctorRole').touched && editDoctorDetailsForm.get('doctorRole').invalid">
+            {{doctorRoleInputMsg}}</p>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="field-full-width">
+            <mat-label>Pan No <sup class="text-danger">*</sup></mat-label>
+            <input matInput placeholder="Ex. example@abc.com" value="" formControlName="panNo" />
+          </mat-form-field>
+          <p style="color: red;"
+            *ngIf="editDoctorDetailsForm.get('panNo') && editDoctorDetailsForm.get('panNo').touched && editDoctorDetailsForm.get('panNo').invalid">
+            Please enter this field</p>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="field-full-width">
+            <mat-label>Aadhar No <sup class="text-danger">*</sup></mat-label>
+            <input matInput placeholder="Ex. example@abc.com" value="" formControlName="aadharNo" />
+          </mat-form-field>
+          <p style="color: red;"
+            *ngIf="editDoctorDetailsForm.get('aadharNo') && editDoctorDetailsForm.get('aadharNo').touched && editDoctorDetailsForm.get('aadharNo').invalid">
+            Please enter this field</p>
+        </div>
+      </div>
+
+      <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <mat-form-field class="field-full-width">
+            <mat-label>Initial Registration Cost </mat-label>
+            <input matInput placeholder="Ex. 1000" value="" formControlName="initialRegCost" />
+            <mat-icon matSuffix class="mr-2" color='primary'><i class="fa fa-inr" aria-hidden="true"></i></mat-icon>
+          </mat-form-field>
+          <p style="color: red;"
+            *ngIf="editDoctorDetailsForm.get('initialRegCost') && editDoctorDetailsForm.get('initialRegCost').touched && editDoctorDetailsForm.get('initialRegCost').invalid">
+            Please enter this field</p>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12 text-center">
+          <mat-form-field class="field-full-width">
+            <mat-label>Choose an option</mat-label>
+            <mat-select (selectionChange)='flatOrShare($event)' formControlName="flatOrShareLabel">
+              <mat-option value="flat">Flat</mat-option>
+              <mat-option value="sharing">Sharing</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </div>
+      </div>
+
+
+      <ng-container *ngIf="flatOrSharingValue=='flat'">
+        <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <mat-form-field class="field-full-width">
+              <mat-label>Amount To Clinic</mat-label>
+              <input matInput placeholder="Ex. 1000" formControlName="amtToClinic" />
+              <mat-icon matSuffix class="mr-2" color='primary'><i class="fa fa-inr" aria-hidden="true"></i></mat-icon>
+            </mat-form-field>
+            <p style="color: red;"
+              *ngIf="editDoctorDetailsForm.get('amtToClinic') && editDoctorDetailsForm.get('amtToClinic').touched && editDoctorDetailsForm.get('amtToClinic').invalid">
+              Please enter this field</p>
+          </div>
+        </div>
+      </ng-container>
+
+
+      <ng-container *ngIf="flatOrSharingValue=='sharing'">
+        <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+          <div class="col-lg-6 col-md-12 col-sm-12">
+            <mat-form-field class="field-full-width">
+              <mat-label>Clinic Cost</mat-label>
+              <input matInput placeholder="Ex. 1000" formControlName="clinicCost" />
+              <mat-icon matSuffix class="mr-2" color='primary'><i class="fa fa-inr" aria-hidden="true"></i></mat-icon>
+            </mat-form-field>
+            <p style="color: red;"
+              *ngIf="editDoctorDetailsForm.get('clinicCost') && editDoctorDetailsForm.get('clinicCost').touched && editDoctorDetailsForm.get('clinicCost').invalid">
+              Please enter this field</p>
+          </div>
+
+          <div class="col-lg-6 col-md-12 col-sm-12">
+            <mat-form-field class="field-full-width">
+              <mat-label>Doctor Cost</mat-label>
+              <input matInput placeholder="Ex. 1000" formControlName="doctorCost" />
+              <mat-icon matSuffix class="mr-2" color='primary'><i class="fa fa-inr" aria-hidden="true"></i></mat-icon>
+            </mat-form-field>
+            <p style="color: red;"
+              *ngIf="editDoctorDetailsForm.get('doctorCost') && editDoctorDetailsForm.get('doctorCost').touched && editDoctorDetailsForm.get('doctorCost').invalid">
+              Please enter this field</p>
+          </div>
+        </div>
+      </ng-container>
+
+      <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+        <div class="col-lg-12 col-md-12 col-sm-12 mx-auto text-center">
+          <!-- <p>reports chose file name</p> -->
+
+          <!-- <label for="resumeFile">Resume/CV <sup class="text-danger">*</sup></label> -->
+          <input type="file" class="form-control fileUpload" accept="application/pdf" id="fileUpload" #uploadAgreement
+            hidden (change)="getAgreementFile(uploadAgreement,$event)" formcontrolName="agreement" />
+          <div>
+            <button type="button" class="upload-resume-btn" mat-raised-button color="primary"
+              (click)="uploadAgreement.click()">
+              Upload Agreement
+            </button>
+            <span class="file-name">&nbsp;{{agreementFileName}}&nbsp;</span>
+            <span style="color:red;" *ngIf="agreementMessage">{{agreementMessage}}</span>
+
+            <!-- <p class="label-header">Agreement</p> -->
+            <br><br>
+            <button type="button" mat-stroked-button (click)="downloadAgreement()" class="download-btn mt-2"
+              color='primary'>View Agreement</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-around">
+          <button type="submit" mat-raised-button color="primary" [disabled]='editDoctorDetailsForm.invalid'>
+            <mat-icon class="mr-2">save</mat-icon>Submit
+          </button>
+          <button type="button" mat-raised-button color="accent" (click)='gotoBack()'>
+            <mat-icon class="mr-2">360</mat-icon>Back
+          </button>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,181 @@
+<div class="container-fluid mt-3 p-0">
+    <div class="card shadow">
+        <div class="card-title">
+            <h4 class="text-center main-bg pt-3 mt-1">- Revenue Report -</h4>
+        </div>
+        <mat-divider class="mx-5"></mat-divider>
+        <form action="" class="form-group customhover" [formGroup]="patientReportForm"
+            (ngSubmit)="getPatientDetailsByDate()">
+            <h6 class="text-center main-bg pt-3 mt-1">Total revenue generated</h6>
+
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5 w-100">
+                <div class="col-lg-6 col-sm-12 col-md-6 mx-auto">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>From Date</mat-label>
+                        <input matInput type="date" placeholder="Ex. 7/7/1995" value="" color="primary"
+                            formControlName="fromDate" />
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="patientReportForm.get('fromDate') && patientReportForm.get('fromDate').touched && patientReportForm.get('fromDate').invalid">
+                        Please enter this field</p>
+                </div>
+                <!-- <div class="col-lg-4 col-sm-12 col-md-6">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Patient Name</mat-label>
+                        <input matInput placeholder="Ex. xyz" value="" formControlName="patientName"/>
+                    </mat-form-field>
+                    <p style="color: red;"
+                    *ngIf="patientReportForm.get('patientName') && patientReportForm.get('patientName').touched && patientReportForm.get('patientName').invalid">
+                    Please enter this field</p>
+                </div> -->
+                <div class="col-lg-6 col-sm-12 col-md-6 mx-auto">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>To Date</mat-label>
+                        <input matInput type="date" placeholder="Ex. 7/8/2020" value="" color="primary"
+                            formControlName="toDate" />
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="patientReportForm.get('toDate') && patientReportForm.get('toDate').touched && patientReportForm.get('toDate').invalid">
+                        Please enter this field</p>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-around">
+                    <button mat-raised-button color="primary" class="shadow" [disabled]="patientReportForm.invalid">
+                        <mat-icon>open_in_new</mat-icon> Get Revenue Report
+                    </button>
+                    <!-- <button mat-raised-button color="accent">Reset</button> -->
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- <div *ngIf="isShown"> -->
+    <div>
+        <div class="container-fluid mt-3 p-0" id="componentID" target="_blank">
+            <div class="card shadow">
+                <div class="card-title">
+                    <h4 class="text-center main-bg pt-3 mt-1">- Revenue -</h4>
+                </div>
+                <!-- <mat-divider class="mx-5"></mat-divider> -->
+
+                <mat-divider class="mx-5"></mat-divider>
+
+                <h5 class="text-center main-bg-2 mt-3" *ngIf="isShown">The Total Amount of ₹ <span class="text-danger">{{result}}</span>
+                    is collected between selected Dates</h5>
+
+                <div class="mat-elevation-z8 mt-5">
+                    <table mat-table [dataSource]="dataSource" matSort style="width: 100%;">
+                        <!-- ID Column -->
+                        <ng-container matColumnDef="slNo">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_header"
+                                style="width: 5%;">Sl.no</th>
+                            <td mat-cell *matCellDef="let row">{{dataSource.filteredData.indexOf(row) + 1}}.</td>
+                            <!-- <td mat-footer-cell *matFooterCellDef> Total </td> -->
+                        </ng-container>
+
+                        <!-- drugName Column -->
+                        <ng-container matColumnDef="patientName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_header"
+                                style="width: 25%;">
+                                Patient Name
+                            </th>
+                            <td mat-cell *matCellDef="let row">{{ row.appointment.patientName }}</td>
+                        </ng-container>
+
+                        <!-- strength Column -->
+                        <ng-container matColumnDef="appointment">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_header"
+                                style="width: 10%;">
+                                Doctor Name
+                            </th>
+                            <td mat-cell *matCellDef="let row">{{ row.appointment.doctorName.doctorName }}</td>
+                        </ng-container>
+
+                        <!-- duration Column -->
+                        <ng-container matColumnDef="date">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_header"
+                                style="width: 10%;">
+                                Date
+                            </th>
+                            <td mat-cell *matCellDef="let row">{{ row.date }}</td>
+                        </ng-container>
+
+                        <!-- duration Column -->
+                        <ng-container matColumnDef="amount">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="table_header"
+                                style="width: 10%;">
+                                Total Amount
+                            </th>
+                            <td mat-cell *matCellDef="let row">₹ {{ row.amount }}</td>
+                            <!-- <td mat-footer-cell *matFooterCellDef> {{getTotalCost()}} </td> -->
+                        </ng-container>
+
+                        <!-- <ng-container matColumnDef="total">
+                            <mat-header-cell *matHeaderCellDef>Total</mat-header-cell>
+                            <mat-cell *matCellDef="let row">
+                              <span class="mobile-label">Totaal:</span>
+                              <span class="mobile-value"> {{ dataSource.length  }}</span>
+                            </mat-cell>
+                            <mat-footer-cell *matFooterCellDef>
+                              <span class="mobile-value"> {{ dataSource.length  }} </span>
+                            </mat-footer-cell>
+                          </ng-container> -->
+
+                        <!-- Action Column -->
+                        <!-- <ng-container matColumnDef="action">
+                            <th mat-header-cell *matHeaderCellDef class="table_header" style="width: 10%;">Action</th>
+                            <td mat-cell *matCellDef="let row; let x=index;">
+                                <div class="action-btn">
+                                    <a (click)="routeToEditPrescription(this.row)" class="action-link">
+                                        <mat-icon class="edit-btn" title="Edit">edit</mat-icon>
+                                    </a>
+                                </div>
+                                <span style="color: #3f51b5;">|</span>
+                                <div class="action-btn">
+                                    <a (click)="routeToDeletePrescription(this.row)" class="action-link">
+                                        <mat-icon class="delete-btn" title="Delete">delete_forever</mat-icon>
+                                    </a>
+                                </div>
+                            </td>
+                        </ng-container> -->
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr class="row-style" mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                        <!-- <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr> -->
+                    </table>
+
+                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                </div>
+
+                <div class="row d-flex justify-content-around mt-4 ml-5 mr-5" *ngIf="isShown">
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-around">
+                        <!-- <button type="submit" mat-raised-button color="primary">
+                        <mat-icon class="mr-2">save</mat-icon>Save
+                    </button> -->
+                        <button mat-raised-button color="accent" (click)="printRevenue('componentID')">
+                            <mat-icon>print</mat-icon>Print
+                        </button>
+                        <button type="button" mat-raised-button color="accent" (click)="backToReportsHome()">
+                            <mat-icon>arrow_back_ios</mat-icon>Back
+                        </button>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+
+                    </div>
+                </div>
+                <br />
+
+            </div>
+        </div>
+    </div>

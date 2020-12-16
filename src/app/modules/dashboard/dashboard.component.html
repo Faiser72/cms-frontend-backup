@@ -1,0 +1,138 @@
+<div class="container-fluid">
+  <div class="container mt-5 mb-5">
+    <h1 class=" text-center txt onLoad-text">Welcome To CMS</h1>
+
+    <!-- <h1 class="one">sample text 1</h1>
+        <h1 class="one_o">sample text 1.1</h1>
+        <h1 class="two">sample text 2</h1>
+        <h1 class="two_t">sample text 2.1</h1>
+
+        <h1 color="primary">hiiii</h1> -->
+  </div>
+
+  <div class="dashboard">
+
+    <!-- Counts Tiles Starts -->
+    <div class="row d-flex justify-content-around">
+      <div class="col-lg-2 col-md-4 col-sm-5 col-xs-4 mb-3 mr-2" *ngIf="isAdminRole()">
+        <div class="card tiles" (click)='routeToDoctors()'>
+          <div class="card-body">
+            <h6 class="card-title title">Doctors</h6>
+            <!-- <p class="count">{{ doctorsCount }}</p> -->
+            <p class="count " id="value">
+              <ng2-odometer [number]="doctorsCount" [config]="{ }"></ng2-odometer>
+            </p>
+            <!-- <p class="card-text">Active: {{ activeCompaniesCount }}</p> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-sm-5 col-xs-4 mb-3 mr-2" *ngIf="isAdminRole()">
+        <div class="card tiles" (click)='routeToPatients()'>
+          <div class="card-body">
+            <h6 class="card-title title">Patients</h6>
+            <p class="count " id="value">
+              <ng2-odometer [number]="patientsCount" [config]="{ }"></ng2-odometer>
+            </p>
+            <!-- <p class="card-text">Active: {{ activeCandidatesCount }}</p> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-sm-5 mb-3 mr-2" *ngIf="isAdminRole()">
+        <div class="card tiles" (click)='routeToAppointment()'>
+          <div class="card-body">
+            <h6 class="card-title title">Appointments</h6>
+            <p class="count " id="value">
+              <ng2-odometer [number]="appointmentCount" [config]="{ }"></ng2-odometer>
+            </p>
+            <!-- <p class="card-text">Active: {{ activeInterviewsCount }}</p> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-sm-5 mb-3 mr-2" *ngIf="isAdminRole()">
+        <div class="card tiles" (click)='routeToFrontDesk()'>
+          <div class="card-body">
+            <h6 class="card-title title">Front Desk</h6>
+            <p class="count " id="value">
+              <ng2-odometer [number]="frontdeskCount" [config]="{ }"></ng2-odometer>
+            </p>
+            <!-- <p class="card-text">Active: {{ activeJobsCount }}</p> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row d-flex justify-content-around">
+      <div class="col-lg-2 col-md-4 col-sm-5 col-xs-4 mb-3 mr-2">
+        <div class=" ">
+          <div class="card-body">
+            <!-- <a href="http://clipart-library.com/clipart/8czrGek7i.htm" class="onLoad-text"><img src="http://clipart-library.com/images/8czrGek7i.gif" width="192" height="170" /></a> -->
+            <img src="assets/img/doctor/docs.gif" width="192" height="170" />
+
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-sm-5 col-xs-4 mb-3 mr-2" *ngIf="isUserRole()">
+        <div class="card tiles" (click)="routeToMyPatients()">
+          <div class="card-body">
+            <h6 class="card-title title">My Patients</h6>
+            <p class="count " id="value">
+              <ng2-odometer [number]="myPatientsCount" [config]="{ }"></ng2-odometer>
+            </p>
+            <!-- <p class="card-text">Active: {{ activeCandidatesCount }}</p> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-sm-5 mb-3 mr-2" *ngIf="isUserRole()">
+        <div class="card tiles" (click)="routeToMyAppointment()">
+          <div class="card-body">
+            <h6 class="card-title title"> My Appointments</h6>
+            <p class="count " id="value">
+              <ng2-odometer [number]="myAppointmentsCount" [config]="{ }"></ng2-odometer>
+            </p>
+            <!-- <p class="card-text">Active: {{ activeInterviewsCount }}</p> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-2 col-md-4 col-sm-5 col-xs-4 mb-3 mr-2" *ngIf="isAdminRole()">
+        <div class="card tiles" (click)="routeToPrint()">
+          <div class="card-body">
+            <h6 class="card-title title">Print</h6>
+            <p class="count" id="value">
+              <!-- <ng2-odometer [number]="candidatesCount" [config]="{ }"></ng2-odometer> -->
+              <mat-icon class="icon">print</mat-icon>
+            </p>
+            <!-- <p class="card-text">Active: {{ activeCandidatesCount }}</p> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-sm-5 mb-3 mr-2" *ngIf="isAdminRole()">
+        <div class="card tiles" (click)="routeToReorts()">
+          <div class="card-body">
+            <h6 class="card-title title"> Report</h6>
+            <p class="count " id="value">
+              <!-- <ng2-odometer [number]="interviewsCount" [config]="{ }"></ng2-odometer> -->
+              <mat-icon class="icon">chrome_reader_mode</mat-icon>
+            </p>
+            <!-- <p class="card-text">Active: {{ activeInterviewsCount }}</p> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-sm-5 mb-3 mr-2">
+        <div class=" ">
+          <div class="card-body">
+            <!-- <a href="http://clipart-library.com/clipart/qTBX8yeMc.htm" class="onLoad-text"><img src="http://clipart-library.com/images/qTBX8yeMc.gif" width="192" height="170" /></a>              </div> -->
+            <img src="assets/img/doctor/docs1.gif" width="192" height="170" />
+          </div>
+        </div>
+      </div>
+      <!-- <a href="http://clipart-library.com/clipart/8czrGek7i.htm"><img src="http://clipart-library.com/images/8czrGek7i.gif" width="192" height="170" /></a>
+
+    <a href="http://clipart-library.com/clipart/pT5rG548c.htm"><img src="http://clipart-library.com/images/pT5rG548c.gif" width="192" height="170" /></a> -->
+      <!-- Counts Tiles Ends -->
+    </div>
+
+
+
+
+    <router-outlet></router-outlet>

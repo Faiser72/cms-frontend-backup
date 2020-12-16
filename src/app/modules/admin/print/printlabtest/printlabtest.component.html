@@ -1,0 +1,313 @@
+<div class="container-fluid mt-3 p-0">
+    <div class="card shadow">
+        <div class="card-title">
+            <h4 class="text-center main-bg pt-3 mt-1">- Print Lab Test Note -</h4>
+        </div>
+        <mat-divider class="mx-5"></mat-divider>
+        <form action="" class="form-group customhover" [formGroup]="referalNote" (ngSubmit)="getLabTest()">
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+                <div class="col-lg-4 col-sm-12 col-md-6">
+                    <mat-form-field class="field-full-width">
+                        <!-- <mat-label>Patient Number <sup class="text-danger">*</sup></mat-label>
+                        <mat-select formControlName="patientNumber" (selectionChange)="patientDetailsById($event)">
+                            <mat-option *ngFor="let patient of patientDetailsList" [value]="patient">
+                                {{patient.patientNumber}}
+                            </mat-option>
+                        </mat-select> -->
+                        <mat-label>Patient Number <sup class="text-danger">*</sup></mat-label>
+                        <input type="text" matInput formControlName="patientNumber" [matAutocomplete]="auto">
+                        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn"
+                            (optionSelected)="patientDetailsById($event.option)">
+                            <mat-option *ngFor="let patient of filteredPatientOptions | async" [value]="patient">
+                                {{patient.patientNumber}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="referalNote.get('patientNumber') && referalNote.get('patientNumber').touched && referalNote.get('patientNumber').invalid">
+                        {{patientNumberInputMsg}}</p>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-md-6">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Patient Name</mat-label>
+                        <input matInput placeholder="Ex. xyz" value="" formControlName="patientName" />
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="referalNote.get('patientName') && referalNote.get('patientName').touched && referalNote.get('patientName').invalid">
+                        Please enter this field</p>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-md-6">
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Appointment Date</mat-label>
+                        <input matInput type="date" placeholder="Ex. 7/2/1995" value="" color="primary"
+                            formControlName="appointmentDate" />
+                    </mat-form-field>
+                    <p style="color: red;"
+                        *ngIf="referalNote.get('appointmentDate') && referalNote.get('appointmentDate').touched && referalNote.get('appointmentDate').invalid">
+                        Please enter this field</p>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-around">
+                    <button mat-raised-button color="primary" class="shadow" [disabled]='referalNote.invalid'>
+                        <mat-icon>open_in_new</mat-icon> Get Lab Test
+                    </button>
+                    <!-- <button mat-raised-button color="accent">Reset</button> -->
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div *ngIf="isShown" class="mt-5">
+        <div class="container" id="componentID">
+            <form action="" class="form-group customhover" [formGroup]="addLabTestForm">
+                <div class="row d-flex justify-content-around mt-4 ml-5 mr-5 w-50 mx-auto">
+                    <div class="col-lg-12 col-sm-12 col-md-6">
+                        <mat-form-field class="field-full-width">
+                            <mat-label>Problem Suspected</mat-label>
+                            <input matInput placeholder="Ex. xyz" value="" formControlName="problemSuspected" />
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <h4 class="text-center main-bg-2 mt-5">Test Suggested</h4>
+                <div class="row d-flex justify-content-around  ml-5 mr-5 w-100 mx-auto mt-3">
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary"
+                            formControlName="completeheamogram">
+                            Complete
+                            Heamogram</mat-checkbox>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary"
+                            formControlName="bloodGrouprhtype">Blood
+                            group
+                            & RH Type</mat-checkbox>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary"
+                            formControlName="postPrandialBloodSugar">
+                            Post
+                            Prandial Blood Sugar</mat-checkbox>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary"
+                            formControlName="bloodUrea">Blood Urea
+                        </mat-checkbox>
+                    </div>
+                </div>
+
+                <div class="row d-flex justify-content-around  ml-5 mr-5 w-100 mx-auto mt-3">
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary"
+                            formControlName="bloodUreaNitrogen">Blood
+                            Urea
+                            Nitrogen</mat-checkbox>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary"
+                            formControlName="serumCreatinine">Serum
+                            Creatinine</mat-checkbox>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary" formControlName="uricAcid">
+                            Uric Acid
+                        </mat-checkbox>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary"
+                            formControlName="lipidProfile">Lipid
+                            Profile
+                        </mat-checkbox>
+                    </div>
+                </div>
+
+                <div class="row d-flex justify-content-around  ml-5 mr-5 w-100 mx-auto mt-3">
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary"
+                            formControlName="liverFunctionTest">Liver
+                            Function Test</mat-checkbox>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary" formControlName="tsh">TSH
+                        </mat-checkbox>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary"
+                            formControlName="serumCalcium">Serum
+                            Calcium
+                        </mat-checkbox>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary" formControlName="hivElisa">
+                            Hiv Elisa
+                        </mat-checkbox>
+                    </div>
+                </div>
+
+                <div class="row d-flex justify-content-around  ml-5 mr-5 w-100 mx-auto mt-3">
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary"
+                            formControlName="hbsagElisa">HBSAG Elisa
+                        </mat-checkbox>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary"
+                            formControlName="urineRoutine">Urine
+                            Routine
+                        </mat-checkbox>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary"
+                            formControlName="chestXRay">Chest X-Ray
+                        </mat-checkbox>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary"
+                            formControlName="Echocardiogram">2D
+                            Echocardiogram</mat-checkbox>
+                    </div>
+                </div>
+
+                <div class="row d-flex justify-content-around  ml-5 mr-5 w-100 mx-auto mt-3">
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary"
+                            formControlName="treadmillTest">Treadmill
+                            Test
+                        </mat-checkbox>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary"
+                            formControlName="ultraSoundAbdomenAndPelvis">
+                            Ultra Sound Abdomen And Pelvis</mat-checkbox>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary"
+                            formControlName="urineCompleteAnalysis">
+                            Urine
+                            Complete Analysis</mat-checkbox>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary" formControlName="ecg">ECG
+                        </mat-checkbox>
+                    </div>
+                </div>
+
+                <div class="row d-flex justify-content-around  ml-5 mr-5 w-100 mx-auto mt-3 ">
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary"
+                            formControlName="glycatedHb">Glycated
+                            HB(HBA1C)
+                        </mat-checkbox>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary"
+                            formControlName="electrolytes">Electrolytes
+                        </mat-checkbox>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary"
+                            formControlName="urineCompleteAnalysis">
+                            Urine
+                            Microalbumin</mat-checkbox>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary" formControlName="ecg">ECG
+                        </mat-checkbox>
+                    </div>
+                </div>
+
+                <div class="row d-flex justify-content-around  ml-5 mr-5 w-100 mx-auto mt-3 ">
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary" formControlName="esr">ESR
+                        </mat-checkbox>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary"
+                            formControlName="asloQuantitative">ASLO
+                            Quantitative</mat-checkbox>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary"
+                            formControlName="raQuantitative">RA
+                            Quantitative</mat-checkbox>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary"
+                            formControlName="crpQuantitative">CRP
+                            Quantitative</mat-checkbox>
+                    </div>
+                </div>
+
+                <div class="row d-flex justify-content-around  ml-5 mr-5 w-100 mx-auto mt-3 ">
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary" formControlName="anaElisa">
+                            ANA Elisa
+                        </mat-checkbox>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary" formControlName="lh">LH
+                        </mat-checkbox>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary"
+                            formControlName="prolactin">Prolactin
+                        </mat-checkbox>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 ">
+                        <mat-checkbox class="example-margin" disabled='true' color="primary"
+                            formControlName="fshLHRatio">FSH LH Ratio
+                        </mat-checkbox>
+                    </div>
+                </div>
+
+
+                <!-- save buttons -->
+                <!-- <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+    
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-around">
+                        <button type="submit" mat-raised-button color="primary">
+                            <mat-icon class="mr-2">save</mat-icon>Submit
+                        </button>
+                        <button type="reset" mat-raised-button color="accent">
+                            <mat-icon class="mr-2">360</mat-icon>Reset
+                        </button>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+    
+                    </div>
+                </div> -->
+            </form>
+
+        </div>
+
+        <div class="row d-flex justify-content-around mt-4 ml-5 mr-5">
+            <div class="col-lg-4 col-md-6 col-sm-12">
+
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-around">
+                <!-- <button type="submit" mat-raised-button color="primary">
+                <mat-icon class="mr-2">save</mat-icon>Save
+            </button> -->
+                <button type="reset" mat-raised-button color="accent" (click)="printLabTest('componentID')">
+                    <mat-icon>print</mat-icon>Print
+                </button>
+                <button mat-raised-button color="accent" (click)="backToPrintHome()">
+                    <mat-icon>arrow_back_ios</mat-icon>Back
+                </button>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+
+            </div>
+        </div>
+    </div>
+</div>
